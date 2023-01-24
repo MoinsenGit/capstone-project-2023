@@ -2,6 +2,7 @@
 **/.DS_Store
 
 # Idea files
+.idea
 **/.idea
 **/*.iws
 **/*.iml
