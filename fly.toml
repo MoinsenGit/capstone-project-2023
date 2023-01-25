@@ -1,6 +1,6 @@
-# fly.toml file generated for capstone-project-2023-nf on 2023-01-25T12:54:28+01:00
+# fly.toml file generated for capstone-project-2023 on 2023-01-25T13:26:35+01:00
 
-app = "capstone-project-2023-nf"
+app = "capstone-project-2023"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
