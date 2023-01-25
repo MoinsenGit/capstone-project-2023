@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="fix: Maven, delete doubletten">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="fix: new fly.toml">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript JSX File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -42,28 +48,65 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/homefolder/Desktop/capstone/capstone-project-2023",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/src/pages&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;b43fdd98b1fd705ae4c3a10cf25aad8a&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="de.neuefische.backend.model" />
+      <recent name="de.neuefische.backend.service.UserService" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/pages" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="MONGO_URI" value="mongodb://localhost:27017/spring-security-db" />
+      </envs>
       <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.neuefische.backend.BackendApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.start" />
+      <item itemvalue="Spring Boot.BackendApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -73,7 +116,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1674547437039</updated>
-      <workItem from="1674547438315" duration="9239000" />
+      <workItem from="1674547438315" duration="40726000" />
+      <workItem from="1674649902409" duration="92000" />
+      <workItem from="1674650574956" duration="8167000" />
+      <workItem from="1674658844218" duration="85000" />
+      <workItem from="1674659509090" duration="5127000" />
     </task>
     <task id="LOCAL-00001" summary="fix: Maven, delete doubletten">
       <created>1674548434649</created>
@@ -82,7 +129,42 @@
       <option name="project" value="LOCAL" />
       <updated>1674548434649</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feature: sonar functionality">
+      <created>1674573372512</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1674573372512</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix fly.toml">
+      <created>1674642661683</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1674642661683</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix: new Dockerfile">
+      <created>1674648916888</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1674648916888</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: new Dockerfile, fly.toml, .dockerignore">
+      <created>1674649165902</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1674649165902</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix: new fly.toml">
+      <created>1674649815072</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1674649815072</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,6 +183,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix: Maven, delete doubletten" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Maven, delete doubletten" />
+    <MESSAGE value="feature: sonar functionality" />
+    <MESSAGE value="fix fly.toml" />
+    <MESSAGE value="fix: new Dockerfile" />
+    <MESSAGE value="fix: new Dockerfile, fly.toml, .dockerignore" />
+    <MESSAGE value="fix: new fly.toml" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: new fly.toml" />
   </component>
 </project>
