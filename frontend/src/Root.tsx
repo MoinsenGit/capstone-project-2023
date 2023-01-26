@@ -33,8 +33,6 @@ export default function Root() {
                     </Auth>
                 }/>
 
-                // ToDo: Add more routes here when different shops
-
                 <Route path="/item/{id}" element={
                     <Auth>
                         <ItemPage/>
