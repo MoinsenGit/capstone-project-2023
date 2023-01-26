@@ -12,5 +12,4 @@ public class AppUser {
     private String username;
     private String password;
 
-    // ToDo: add shopId? (if user is a shop owner)
 }
