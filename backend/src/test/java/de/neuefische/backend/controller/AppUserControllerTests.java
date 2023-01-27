@@ -27,25 +27,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @ExtendWith(MockitoExtension.class)
-class AppUserControllerTest {
+class AppUserControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
-    // /api/users
-    // POST: Create a new user
-    // POST: me /login
-    // GET: /me
-    // GET logout /logout
+
     @Autowired
     private AppUserRepository appUserRepository;
 
-    @Test // user wants to go to /me but is not logged in -> 401 Unauthorized
+    @Test
     void getMe_whenUserIsNotLoggedIn_return401() throws Exception {
         mockMvc.perform(get("/api/users/me"))
                 .andExpect(status().isUnauthorized());
     }
 
-    @Test // user is logged in and wants to go to /me -> userdata is returned
+    @Test
     @WithMockUser(username = "testuser")
     void me_whenUserIsLoggedIn_returnUserData() throws Exception {
         appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
@@ -55,7 +51,7 @@ class AppUserControllerTest {
                 .andExpect(content().json("{\"username\" : \"testuser\",\"password\" : \"\"}"));
     }
 
-    @Test // new user is created -> userdata is returned
+    @Test
     void create_whenNewUserIsCreatedSuccessfully_returnCorrectUserData() throws Exception {
         String userAsJson = """
                 {"username" : "testuser","password" : "testpassword"}""";
@@ -69,7 +65,7 @@ class AppUserControllerTest {
                 .andExpect(content().json(response));
     }
 
-    @Test // username already exists in database -> 409 Conflict
+    @Test
     void create_whenNewUserIsCreated_butUsernameExistent_return409Conflict() throws Exception {
         String userAsJson = """
                 {"username" : "testuser","password" : "testpassword"}""";
@@ -86,7 +82,7 @@ class AppUserControllerTest {
                 .andExpectAll(status().isConflict());
     }
 
-    @Test // registered user is not logged in and wants to login
+    @Test
     @WithMockUser(username = "testuser")
     void post_LoginWithRegisteredUser() throws Exception {
         appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
@@ -102,7 +98,7 @@ class AppUserControllerTest {
                 .andExpect(content().json(response));
     }
 
-    @Test  // user is logged in and wants to logout
+    @Test
    @WithMockUser(username = "testuser")
     void logout_withRegisteredUser() throws Exception {
         mockMvc.perform(get("/api/users/logout"))
