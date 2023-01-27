@@ -22,18 +22,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class ItemControllerTest {
+class ItemControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ItemRepository itemRepository;
-    // /api/items
-    // POST create item
-    // GET get all items
-    // GET get item by id - /{id}
-    // PUT update item - /{id}
-    // DELETE delete item - /{id}
 
     @Test
     void createItem_whenNotLoggedIn_shouldReturn401() throws Exception {
@@ -90,13 +84,20 @@ class ItemControllerTest {
     @WithMockUser(username = "testuser")
     void getItemById_whenLoggedInAsUser_shouldReturnItem() throws Exception {
         String itemAsJson = """
-                {"id":"1","name":"test","price":1.0,"description":"test","image":null,"category":"test"}""";
+                {"id":"1",
+                "name":"test",
+                "price":1.0,
+                "description":"test",
+                "image":null,
+                "category":"test"
+                }
+                """;
 
         mockMvc.perform(post("/api/items")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(itemAsJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string(itemAsJson));
+                .andExpect(content().json(itemAsJson));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/items/1"))
                 .andExpectAll(
@@ -119,16 +120,30 @@ class ItemControllerTest {
     @WithMockUser(username = "testuser")
     void updateItem_whenLoggedInAsUser_shouldReturnItem() throws Exception {
         String itemAsJson = """
-                {"id":"1","name":"test","price":1.0,"description":"test","image":null,"category":"test"}""";
+                {"id":"1",
+                "name":"test",
+                "price":1.0,
+                "description":"test",
+                "image":null,
+                "category":"test"
+                }
+                """;
 
         mockMvc.perform(post("/api/items")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(itemAsJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string(itemAsJson));
+                .andExpect(content().json(itemAsJson));
 
         String updatedItemAsJson = """
-                {"id":"3","name":"test","price":1.0,"description":"test","image":null,"category":"test"}""";
+                {"id":"3",
+                "name":"test",
+                "price":1.0,
+                "description":"test",
+                "image":null,
+                "category":"test"
+                }
+                """;
 
         mockMvc.perform(MockMvcRequestBuilders.put("/api/items/3")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -155,13 +170,21 @@ class ItemControllerTest {
     @WithMockUser(username = "testuser")
     void deleteItem_whenLoggedInAsUser_shouldReturnItem() throws Exception {
         String itemAsJson = """
-                {"id":"7","name":"test","price":1.0,"description":"test","image":null,"category":"test"}""";
+                {
+                "id":"7",
+                "name":"test",
+                "price":1.0,
+                "description":"test",
+                "image":null,
+                "category":"test"
+                }
+                """;
 
         mockMvc.perform(post("/api/items")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(itemAsJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string(itemAsJson));
+                .andExpect(content().json(itemAsJson));
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/items/7"))
                 .andExpect(status().isOk());
