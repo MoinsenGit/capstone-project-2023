@@ -1,4 +1,4 @@
-package de.neuefische.backend;
+package de.neuefische.backend.config;
 
 
 import de.neuefische.backend.model.AppUser;
@@ -30,12 +30,10 @@ public class SecurityConfig {
                         HttpMethod.POST,
                         "/api/users"
                 ).permitAll()
-                /*.antMatchers(
+                .antMatchers(
                         HttpMethod.POST,
                         "/api/users/login")
                 .permitAll()
-
-                 */
                 .anyRequest()
                 .authenticated()
                 .and()
