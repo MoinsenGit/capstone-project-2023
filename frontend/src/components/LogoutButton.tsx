@@ -18,8 +18,6 @@ export default function LogoutButton() {
             window.localStorage.clear();
         }, [navigate]);
 
-        // ToDo: get toastify to work
-
     return (
 
         <Grid container justifyContent="flex-end">
