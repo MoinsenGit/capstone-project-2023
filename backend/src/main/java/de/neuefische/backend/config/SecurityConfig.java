@@ -32,9 +32,12 @@ public class SecurityConfig {
                 ).permitAll()
                 .antMatchers(
                         HttpMethod.POST,
-                        "/api/users/login")
+                        "/api/users/login"
+                )
                 .permitAll()
-                .anyRequest()
+                .antMatchers(
+                        "/api/**"
+                )
                 .authenticated()
                 .and()
                 .build();

@@ -6,7 +6,8 @@ import SignUpPage from "./pages/SignUpPage";
 import ItemPage from "./pages/ItemPage";
 import {useMemo} from "react";
 import NoAuth from "./components/NoAuth";
-
+import Container from '@mui/material/Container';
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function Root() {
     const [searchParams] = useSearchParams();
@@ -16,36 +17,38 @@ export default function Root() {
 
     return (
         <div>
-            <Routes>
-                <Route path="/signup" element={
-                    <NoAuth redirect={redirect}>
-                        <SignUpPage/>
-                    </NoAuth>
-                }/>
-                <Route path="/login" element={
-                    <NoAuth redirect={redirect}>
-                        <LoginPage/>
-                    </NoAuth>
-                }/>
-                <Route path="/" element={
-                    <Auth>
-                        <HomePage/>
-                    </Auth>
-                }/>
+            <Container maxWidth="sm">
 
-                <Route path="/item/{id}" element={
-                    <Auth>
-                        <ItemPage/>
-                    </Auth>
-                }/>
+                <Routes>
+                    <Route path="/signup" element={
+                        <NoAuth redirect={redirect}>
+                            <SignUpPage/>
+                        </NoAuth>
+                    }/>
+                    <Route path="/login" element={
+                        <NoAuth redirect={redirect}>
+                            <LoginPage/>
+                        </NoAuth>
+                    }/>
+                    <Route path="/" element={
+                        <Auth>
+                            <HomePage/>
+                        </Auth>
+                    }/>
+                    <Route path="/itemDetails" element={
+                        <Auth>
+                            <ItemPage/>
+                        </Auth>
+                    }/>
+                    <Route path={"*"} element={
+                        <NotFoundPage/>
+                    }/>
 
 
-
-
-            </Routes>
+                </Routes>
+            </Container>
         </div>
 
-    );
-
+    )
 
 }

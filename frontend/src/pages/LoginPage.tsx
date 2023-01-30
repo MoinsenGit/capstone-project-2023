@@ -2,8 +2,27 @@ import React, {FormEvent, useCallback, useMemo, useState} from "react";
 import {Link, useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
 import './../App.css';
+import {
+    Alert,
+    AppBar,
+    Avatar,
+    Box,
+    createTheme,
+    CssBaseline,
+    Grid,
+    TextField,
+    ThemeProvider,
+    Typography
+} from "@mui/material";
+import Container from "@mui/material/Container";
+import {toast} from "react-toastify";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Button from "@mui/material/Button";
+import CameraIcon from '@mui/icons-material/PhotoCamera';
+import Toolbar from '@mui/material/Toolbar';
 
 export default function LoginPage() {
+
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
@@ -37,7 +56,9 @@ export default function LoginPage() {
             try {
                 await axios.post("/api/users/login", null, {
                     headers: {
-                        "Authorization": "Basic " + window.btoa(`${credentials.username}:${credentials.password}`)
+                        "Authorization": "Basic " + window.btoa(
+                            `${credentials.username}:${credentials.password}`
+                        )
                     }
                 });
 
@@ -45,55 +66,97 @@ export default function LoginPage() {
             } catch (event) {
                 setErrors((errors) => [
                     ...errors,
-                    "Username oder password is not correct. Please try again."
+                    "Username or password are not correct.   " +
+                    "Please try again."
                 ]);
             }
         },
         [credentials, navigate, redirect]
     );
 
+    const theme = createTheme();
 
     return (
-        <div className="App">
-            <h1>LOGIN PAGE </h1>
-            <br></br>
-            <h3> [WIRD NOCH SCHÖNER!]</h3>
-            <br></br>
-            {errors.length > 0 && (
-                <div>
-                    {errors.map((error) => <p key={error}>{error}</p>)}
-                </div>
-            )}
-            <br></br>
-            <br></br>
-            <form onSubmit={login}>
-                <div>
-                    <input
-                        placeholder={"username"}
-                        value={credentials.username}
-                        name={"username"}
-                        onChange={handleChange}
-                    />
-                </div>
-                <br></br>
-                <div>
-                    <input
-                        placeholder={"password"}
-                        name={"password"}
-                        type={"password"}
-                        value={credentials.password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <br></br>
-                <div>
-                    <button>Login</button>
-                </div>
-                <br></br>
-                <br></br>
-                <div>If you do not have an account, you can <Link to={"/signup" + location.search}>sign up here!</Link>
-                </div>
-            </form>
-        </div>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+
+                <CssBaseline/>
+
+                <AppBar position="relative" style={{background: '#91BFBC'}}>
+                    <Toolbar>
+                        <Typography variant="h6" noWrap>
+                            S.IT.CO
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{m: 1, bgcolor: '#91BFBC'}}>
+                        <LockOutlinedIcon/>
+                    </Avatar>
+
+                    <Typography component="h1" variant="h5">
+                        Log in
+                    </Typography>
+
+                    <Box>
+                        {errors.map((error) => <Alert severity="error">{error}</Alert>)}
+                    </Box>
+
+                    <Box component="form" onSubmit={login} noValidate sx={{mt: 1}}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="Username"
+                            name="username"
+                            autoComplete="username"
+                            autoFocus
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            onChange={handleChange}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{mt: 3, mb: 2, bgcolor: '#91BFBC'}}
+                        >
+                            Log In
+                        </Button>
+
+                        <Grid container justifyContent="center">
+                            <Grid item>
+                                <Link to={"/signup" + location.search}>
+                                    {"Don't have an account? Sign Up here! It's free! "}
+                                </Link>
+                            </Grid>
+                        </Grid>
+
+                    </Box>
+                    <Typography variant="body2" color="text.secondary" align="center">
+                        {' © '}
+                        {new Date().getFullYear()}
+                    </Typography>
+                </Box>
+
+            </Container>
+        </ThemeProvider>
     );
 }
