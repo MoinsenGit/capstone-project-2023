@@ -40,6 +40,11 @@ export default function Root() {
                             <ItemPage/>
                         </Auth>
                     }/>
+                    <Route path="/itemDetails/:id" element={
+                        <Auth>
+                            <ItemPage/>
+                        </Auth>
+                    }/>
                     <Route path={"*"} element={
                         <NotFoundPage/>
                     }/>

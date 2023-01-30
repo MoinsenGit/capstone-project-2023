@@ -14,23 +14,29 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     public List<Item> getAll() {
-        return itemRepository.findAll();
+        return itemRepository
+                .findAll();
     }
 
     public Item getById(String id) throws Exception {
-        return itemRepository.findById(id).orElseThrow(() -> new Exception("Item with id " + id + " is nonexistent."));
+        return itemRepository
+                .findById(id)
+                .orElseThrow(() -> new Exception("Item with id " + id + " is nonexistent."));
     }
 
     public Item create(Item item) {
-        return itemRepository.save(item);
+        return itemRepository
+                .save(item);
     }
 
     public Item update(Item item) {
-        return itemRepository.save(item);
+        return itemRepository
+                .save(item);
     }
 
     public void delete(String id) {
-        itemRepository.deleteById(id);
+        itemRepository
+                .deleteById(id);
     }
 
 

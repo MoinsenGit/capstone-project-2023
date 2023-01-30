@@ -1,7 +1,6 @@
 import React, {FormEvent, useCallback, useMemo, useState} from "react";
 import {Link, useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
-import './../App.css';
 import {
     Alert,
     AppBar,
@@ -15,20 +14,21 @@ import {
     Typography
 } from "@mui/material";
 import Container from "@mui/material/Container";
-import {toast} from "react-toastify";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Button from "@mui/material/Button";
-import CameraIcon from '@mui/icons-material/PhotoCamera';
 import Toolbar from '@mui/material/Toolbar';
 
 export default function LoginPage() {
-
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
     });
 
     const [errors, setErrors] = useState<string[]>([]);
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
 
     const handleChange = useCallback(
         (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,13 +39,11 @@ export default function LoginPage() {
     );
 
     const [searchParams] = useSearchParams();
+
     const redirect = useMemo(
         () => searchParams.get("redirect") || "/",
         [searchParams]
     );
-    const navigate = useNavigate();
-
-    const location = useLocation();
 
     const login = useCallback(
         async (event: FormEvent<HTMLFormElement>) => {
@@ -79,9 +77,7 @@ export default function LoginPage() {
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-
                 <CssBaseline/>
-
                 <AppBar position="relative" style={{background: '#91BFBC'}}>
                     <Toolbar>
                         <Typography variant="h6" noWrap>
@@ -105,7 +101,7 @@ export default function LoginPage() {
                         Log in
                     </Typography>
 
-                    <Box>
+                    <Box key={credentials.username}>
                         {errors.map((error) => <Alert severity="error">{error}</Alert>)}
                     </Box>
 

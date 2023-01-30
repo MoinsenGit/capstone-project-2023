@@ -1,7 +1,6 @@
 import React, {FormEvent, useCallback, useState} from "react";
 import axios from "axios";
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import './../App.css';
 import Button from "@mui/material/Button";
 import {
     Alert,
@@ -10,7 +9,6 @@ import {
     Box,
     createTheme,
     CssBaseline,
-    FormControlLabel,
     Grid,
     TextField,
     ThemeProvider,
@@ -19,9 +17,9 @@ import {
 import Container from "@mui/material/Container";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Toolbar from "@mui/material/Toolbar";
-import {toast} from "react-toastify";
+
 export default function SignUpPage () {
-    const [credentials, setCredentials] = useState({
+    const [credentials] = useState({
         username: "",
         password: ""
     });
@@ -56,8 +54,6 @@ export default function SignUpPage () {
         [credentials, navigate, location]
     );
 
-    // ToDo: Make toastify work: Sign up succesdful
-
     const theme = createTheme();
 
     return (
@@ -86,7 +82,7 @@ export default function SignUpPage () {
                         Sign up
                     </Typography>
 
-                    <Box>
+                    <Box key={credentials.username}>
                         {errors.map((error) => <Alert severity="error">{error}</Alert>)}
                     </Box>
 
@@ -138,53 +134,5 @@ export default function SignUpPage () {
             </Container>
         </ThemeProvider>
 
-        /*       <div className="App">
-                   <h1>Welcome! Signup!</h1>
-                   <br></br>
-                   <br></br>
-                   {errors.length > 0 && (
-                       <div>
-                           {errors.map((error) => <p key={error}>{error}</p>)}
-                       </div>
-                   )}
-                   <br></br>
-                   <br></br>
-                   <form onSubmit={signUp}>
-                       <div>
-                           Choose a username:
-                           <br></br>
-                           <input
-                               placeholder={"username"}
-                               value={credentials.username}
-                               name={"username"}
-                               onChange={handleChange}
-                           />
-                       </div>
-                       <br></br>
-                       <div>
-                           Choose a password:
-                           <br></br>
-                           <input
-                               placeholder={"password"}
-                               name={"password"}
-                               type={"password"}
-                               value={credentials.password}
-                               onChange={handleChange}
-                           />
-                       </div>
-                       <br></br>
-                       <br></br>
-                       <div>
-                           <button>
-                           <Button variant="outlined">Sign up</Button>
-                       </button>
-                       </div>
-                       <br></br>
-                       <br></br>
-                       <div>If you do already have an account, you can <Link to={"/login" + location.search}>log in here!</Link>
-                       </div>
-                   </form>
-               </div>
-               */
     );
 }

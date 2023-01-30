@@ -1,5 +1,5 @@
 import LogoutButton from "../components/LogoutButton";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Image, Item} from "../model/Item";
 import axios from "axios";
 import {toast} from "react-toastify";
@@ -9,23 +9,43 @@ import {
     Box,
     createTheme,
     CssBaseline,
-    Grid, InputAdornment,
-    Stack, TextField,
+    Grid, InputAdornment, TextField,
     ThemeProvider,
     Typography
 } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import {Save} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 
 export default function ItemPage() {
+    const [isEditItem, setIsEditItem] = useState(false);
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [imageName, setImageName] = useState("");
     const [category, setCategory] = useState("");
+
+    const params = useParams();
+
+    useEffect(() => {
+        (async () => {
+            const id = params.id;
+            if (id !== undefined && id !== null) {
+                axios.get("/api/items/" + id)
+                    .then((response) => {
+                        setIsEditItem(true);
+                        setName(response.data.name ?? "");
+                        setPrice(response.data.price ?? "");
+                        setDescription(response.data.description ?? "");
+                        setImageName(response.data.image.name ?? "");
+                        setCategory(response.data.category ?? "");
+                    })
+                    .catch((error) => toast.error(error.message));
+            }
+        })();
+    }, []);
 
     const submitItem = (event: React.FormEvent<HTMLElement>) => {
         event.preventDefault();
@@ -35,16 +55,17 @@ export default function ItemPage() {
         }
         const item: Item = {
             name: name,
-            price: price,
+            price: price.replace(",", "."),
             description: description,
             image: image,
             category: category,
         }
-        axios.post("/api/items", item)
+        const axiosAction = isEditItem ?
+            axios.put("/api/items/" + params.id, item) :
+            axios.post("/api/items", item);
+        axiosAction
             .then(() => toast.success("Item saved."))
             .catch((error) => toast.error("Error: " + error));
-    }
-    {/*ToDo: make Toastify work*/
     }
 
     const theme = createTheme();
@@ -89,7 +110,7 @@ export default function ItemPage() {
                     </Container>
                     <Box component="form" noValidate onSubmit={submitItem} sx={{mt: 3}}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} >
+                            <Grid item xs={12}>
                                 <TextField
                                     autoFocus
                                     required
@@ -97,19 +118,21 @@ export default function ItemPage() {
                                     id="name"
                                     label="Title"
                                     name="name"
+                                    value={name}
                                     onChange={(event) => {
                                         setName(event.target.value)
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={12} >
+                            <Grid item xs={12}>
                                 <TextField
                                     required
                                     fullWidth
-                                    id="description"
                                     multiline
+                                    id="description"
                                     label="Description"
                                     name="description"
+                                    value={description}
                                     onChange={(event) => {
                                         setDescription(event.target.value)
                                     }}
@@ -121,6 +144,7 @@ export default function ItemPage() {
                                     id="price"
                                     label="Price"
                                     name="price"
+                                    value={price}
                                     InputProps={{
                                         startAdornment: <InputAdornment position="start">EUR</InputAdornment>,
                                     }}
@@ -134,9 +158,10 @@ export default function ItemPage() {
                                 <TextField
                                     required
                                     fullWidth
-                                    name="category"
                                     label="Category"
                                     id="category"
+                                    name="category"
+                                    value={category}
                                     onChange={(event) => {
                                         setCategory(event.target.value)
                                     }}
@@ -146,9 +171,10 @@ export default function ItemPage() {
                                 <TextField
                                     required
                                     fullWidth
-                                    name="image"
                                     label="Image URL"
                                     id="image"
+                                    name="image"
+                                    value={imageName}
                                     onChange={(event) => {
                                         setImageName(event.target.value)
                                     }}
@@ -180,41 +206,5 @@ export default function ItemPage() {
 
         </ThemeProvider>
 
-        /*
-
-                <div>
-                    <h1>View, Edit and Add Items</h1>
-                    <br></br>
-                    <br></br>
-                    <form onSubmit={submitItem}>
-                        <input name={"name"} placeholder="Name"
-                               onChange={(event) => setName(event.target.value)}/>
-                        <input name={"price"} placeholder="Price"
-                               onChange={(event) => setPrice(event.target.value)}/>
-                        <input name={"description"} placeholder="Description"
-                               onChange={(event) => setDescription(event.target.value)}/>
-                        <input name={"imageName"} placeholder="Image Name"
-                               onChange={(event) => setImageName(event.target.value)}/>
-                        <input name={"category"} placeholder="category"
-                               onChange={(event) => setCategory(event.target.value)}/>
-                        <br></br>
-                        <br></br>
-                        <Button variant="outlined" onClick={(event)=>submitItem(event)}>Save Item</Button>
-
-        {/!*                {/!*ToDo: Add image upload*!/}
-                        {/!*ToDo: empty fields after submit*!/}
-                        {/!*ToDo: show ItemCard with new Item underneath form?*!/}*!/}
-
-                    </form>
-                    <br></br>
-                    <br></br>
-                    <a title="Home" href="/">Overview</a>
-                    <br></br>
-                    <br></br>
-                    <div>
-                        <LogoutButton/>
-                    </div>
-                </div>
-        */
     );
 }

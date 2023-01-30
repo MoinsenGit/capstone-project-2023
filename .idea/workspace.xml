@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="feature: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io">
+    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="fix: sonar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/service/ItemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" afterDir="false" />
@@ -30,10 +27,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -232,7 +229,7 @@
       <workItem from="1674815293368" duration="19521000" />
       <workItem from="1674845315030" duration="6226000" />
       <workItem from="1674853987291" duration="41012000" />
-      <workItem from="1675058765167" duration="5696000" />
+      <workItem from="1675058765167" duration="17682000" />
     </task>
     <task id="LOCAL-00001" summary="fix: Maven, delete doubletten">
       <created>1674548434649</created>
@@ -311,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675076439605</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feature. NOW: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io">
+      <created>1675076717799</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1675076717799</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +344,8 @@
     <MESSAGE value="feature: controller tests &#10;added: jacoco, sonar excludes config" />
     <MESSAGE value="fix: formatting in controllertests" />
     <MESSAGE value="feature: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io" />
+    <MESSAGE value="feature. NOW: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature. NOW: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/capstone_project_2023$ItemControllerTests.ic" NAME="ItemControllerTests Coverage Results" MODIFIED="1674759444525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">

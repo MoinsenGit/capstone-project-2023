@@ -1,4 +1,3 @@
-import './../App.css';
 import LogoutButton from "../components/LogoutButton";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
@@ -20,6 +19,7 @@ import {
 } from "@mui/material";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
+import {useNavigate} from "react-router-dom";
 
 export default function HomePage() {
     const [items, setItems] = useState([] as Item[]);
@@ -38,8 +38,9 @@ export default function HomePage() {
             .then((response) => setItems(response.data))
             .catch((error) => toast.error(error.message));
     }
-
+    const navigate = useNavigate();
     const deleteItem = (event: React.FormEvent<HTMLElement>, id: (string | undefined)) => {
+        event.preventDefault();
         axios.delete("/api/items/" + id)
             .then(() => {
                 setItems(items.filter(item => item.id !== id));
@@ -48,7 +49,12 @@ export default function HomePage() {
             .catch((error) => toast.error(error.message))
     }
 
-    // ToDo: Make toastify work
+    // TEST CODE VIEW ITEM
+    const viewItem = (event: React.FormEvent<HTMLElement>, id: (string | undefined)) => {
+        event.preventDefault();
+        navigate("/itemdetails/" + id);
+}
+    // TEST CODE VIEW ITEM
 
     const theme = createTheme();
 
@@ -136,13 +142,12 @@ export default function HomePage() {
                                                 </Typography>
                                             </CardContent>
                                             <CardActions>
-                                                <Button href="/itemDetails" variant="outlined"
+                                                <Button onClick={(event) => viewItem(event, item.id)} variant="outlined"
                                                         size="small">View</Button>
                                                 <Button onClick={(event) => deleteItem(event, item.id)}
                                                         variant="outlined" size="small" startIcon={<DeleteIcon/>}>
                                                     Delete
                                                 </Button>
-                                                {/*// ToDo: Make delete button work with enter AND submit button*/}
                                             </CardActions>
                                         </Card>
                                     </Grid>
