@@ -18,7 +18,7 @@ import React, {FormEvent, useCallback, useState} from "react";
 import {Credentials} from "../model/Credentials";
 
 type AuthProps = {
-    buttonLabel: String;
+    buttonLabel: string;
     handleSubmit: (credentials: Credentials, setErrors: (errors: string[]) => void) => void;
     children: JSX.Element;
 }
@@ -73,8 +73,8 @@ export default function SitCoAuth (props: AuthProps) {
                         {props.buttonLabel}
                     </Typography>
 
-                    <Box key={credentials.username}>
-                        {errors.map((error) => <Alert severity="error">{error}</Alert>)}
+                    <Box>
+                        {errors.map((error) => <Alert key={credentials.username} severity="error">{error}</Alert>)}
                     </Box>
 
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 1}}>
