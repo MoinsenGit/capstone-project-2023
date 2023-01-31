@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="fix sonar issue: auth doubletten in component">
+    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="fix sonar issue: exclude config from coverage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +35,19 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="d1e7b8a6-840e-48d0-8d54-ac7db6200eb3" />
+        <option name="url" value="https://github.com/MoinsenGit/capstone-project-2023" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -219,7 +236,7 @@
       <workItem from="1674815293368" duration="19521000" />
       <workItem from="1674845315030" duration="6226000" />
       <workItem from="1674853987291" duration="41012000" />
-      <workItem from="1675058765167" duration="24921000" />
+      <workItem from="1675058765167" duration="30453000" />
     </task>
     <task id="LOCAL-00001" summary="fix: Maven, delete doubletten">
       <created>1674548434649</created>
@@ -319,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675113586795</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix sonar issue: exclude config from coverage">
+      <created>1675114706019</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1675114706019</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +375,8 @@
     <MESSAGE value="feature. NOW: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io" />
     <MESSAGE value="fix: sonar partly&#10;feature: edit function" />
     <MESSAGE value="fix sonar issue: auth doubletten in component" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix sonar issue: auth doubletten in component" />
+    <MESSAGE value="fix sonar issue: exclude config from coverage" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix sonar issue: exclude config from coverage" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/capstone_project_2023$ItemControllerTests.ic" NAME="ItemControllerTests Coverage Results" MODIFIED="1674759444525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">

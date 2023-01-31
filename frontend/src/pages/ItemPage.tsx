@@ -2,7 +2,8 @@ import LogoutButton from "../components/LogoutButton";
 import React, {useEffect, useState} from "react";
 import {Image, Item} from "../model/Item";
 import axios from "axios";
-import {toast} from "react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
+import {toast, ToastContainer} from "react-toastify";
 import Button from "@mui/material/Button";
 import {
     AppBar,
@@ -53,9 +54,10 @@ export default function ItemPage() {
         const image: Image = {
             name: imageName,
         }
+        const correctedPrice = price.replace(",", ".");
         const item: Item = {
             name: name,
-            price: price.replace(",", "."),
+            price: correctedPrice,
             description: description,
             image: image,
             category: category,
@@ -80,6 +82,7 @@ export default function ItemPage() {
                 </Toolbar>
             </AppBar>
 
+            <ToastContainer />
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Box

@@ -2,6 +2,7 @@ import LogoutButton from "../components/LogoutButton";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 import {Item} from "../model/Item";
 import DeleteIcon from '@mui/icons-material/Delete';
 

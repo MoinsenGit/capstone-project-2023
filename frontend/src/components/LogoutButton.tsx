@@ -3,6 +3,7 @@ import {useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 import Button from "@mui/material/Button";
 import {toast} from "react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 import {Grid} from "@mui/material";
 
 export default function LogoutButton() {
