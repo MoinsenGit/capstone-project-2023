@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="">
+    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="fix sonar issue: exclude config from coverage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/config/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/PasswordEncoderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/config/PasswordEncoderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/de/neuefische/backend/BackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/de/neuefische/backend/BackendApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,20 +20,34 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="250223" />
+        <entry key="$PROJECT_DIR$" value="260123" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="d1e7b8a6-840e-48d0-8d54-ac7db6200eb3" />
+        <option name="url" value="https://github.com/MoinsenGit/capstone-project-2023" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -56,31 +67,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_directory_selection": "/Users/homefolder/Desktop/capstone/capstone-project-2023/backend/src/main/java/de/neuefische/backend",
-    "last_opened_file_path": "/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/src/pages",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "spring.configuration.checksum": "b43fdd98b1fd705ae4c3a10cf25aad8a",
-    "ts.external.directory.path": "/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/backend/src/main/java/de/neuefische/backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/src/pages&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;b43fdd98b1fd705ae4c3a10cf25aad8a&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="de.neuefische.backend.model" />
@@ -101,39 +112,23 @@
       <recent name="de.neuefische.backend.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackendApplication">
-    <configuration name="All in backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="npm.start">
+    <configuration name="AppUserControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
-      <extension name="coverage" sample_coverage="false" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AppUserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage" sample_coverage="false">
+      <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="de.neuefische.backend.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
-        <pattern>
-          <option name="PATTERN" value="de.neuefische.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
-      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.AppUserControllerTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.AppUserControllerTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppUserControllerTest.logout_invalidatesSession" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AppUserControllerTests.create_whenNewUserIsCreated_butUsernameExistent_return409Conflict" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
@@ -142,14 +137,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
-      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.AppUserControllerTest" />
-      <option name="METHOD_NAME" value="logout_invalidatesSession(javax.servlet.http.HttpSession)" />
+      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.AppUserControllerTests" />
+      <option name="METHOD_NAME" value="create_whenNewUserIsCreated_butUsernameExistent_return409Conflict" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppUserControllerTest.post_LoginWithRegisteredUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
@@ -158,8 +153,23 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
-      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.AppUserControllerTest" />
-      <option name="METHOD_NAME" value="post_LoginWithRegisteredUser" />
+      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.ItemControllerTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemControllerTests.updateItem_whenLoggedInAsUser_shouldReturnItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.neuefische.backend.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
+      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.ItemControllerTests" />
+      <option name="METHOD_NAME" value="updateItem_whenLoggedInAsUser_shouldReturnItem" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -186,20 +196,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.All in backend" />
-      <item itemvalue="JUnit.AppUserControllerTest.logout_invalidatesSession" />
-      <item itemvalue="JUnit.AppUserControllerTest.post_LoginWithRegisteredUser" />
       <item itemvalue="JUnit.AppUserControllerTests" />
+      <item itemvalue="JUnit.AppUserControllerTests.create_whenNewUserIsCreated_butUsernameExistent_return409Conflict" />
+      <item itemvalue="JUnit.ItemControllerTests.updateItem_whenLoggedInAsUser_shouldReturnItem" />
+      <item itemvalue="JUnit.ItemControllerTests" />
       <item itemvalue="npm.start" />
       <item itemvalue="Spring Boot.BackendApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
-        <item itemvalue="JUnit.All in backend" />
-        <item itemvalue="JUnit.AppUserControllerTest.post_LoginWithRegisteredUser" />
+        <item itemvalue="JUnit.AppUserControllerTests.create_whenNewUserIsCreated_butUsernameExistent_return409Conflict" />
         <item itemvalue="JUnit.AppUserControllerTests" />
-        <item itemvalue="JUnit.AppUserControllerTest.logout_invalidatesSession" />
+        <item itemvalue="JUnit.ItemControllerTests" />
+        <item itemvalue="JUnit.ItemControllerTests.updateItem_whenLoggedInAsUser_shouldReturnItem" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +230,13 @@
       <workItem from="1674674110324" duration="15915000" />
       <workItem from="1674739641924" duration="287000" />
       <workItem from="1674744101743" duration="397000" />
-      <workItem from="1674744501639" duration="16786000" />
+      <workItem from="1674744501639" duration="20533000" />
+      <workItem from="1674770085235" duration="741000" />
+      <workItem from="1674799844507" duration="6594000" />
+      <workItem from="1674815293368" duration="19521000" />
+      <workItem from="1674845315030" duration="6226000" />
+      <workItem from="1674853987291" duration="41012000" />
+      <workItem from="1675058765167" duration="30453000" />
     </task>
     <task id="LOCAL-00001" summary="fix: Maven, delete doubletten">
       <created>1674548434649</created>
@@ -278,7 +294,56 @@
       <option name="project" value="LOCAL" />
       <updated>1674670916155</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feature: controller tests &#10;added: jacoco, sonar excludes config">
+      <created>1674765507547</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1674765507547</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix: formatting in controllertests">
+      <created>1674817786634</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1674817786634</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feature: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io">
+      <created>1675076439605</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1675076439605</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feature. NOW: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io">
+      <created>1675076717799</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1675076717799</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix: sonar partly&#10;feature: edit function">
+      <created>1675107671177</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1675107671177</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix sonar issue: auth doubletten in component">
+      <created>1675113586795</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1675113586795</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix sonar issue: exclude config from coverage">
+      <created>1675114706019</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1675114706019</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +369,14 @@
     <MESSAGE value="fix: new fly.toml" />
     <MESSAGE value="feature: sign up and login" />
     <MESSAGE value="feature: item backend&#10;fix: comment in root deleted" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: item backend&#10;fix: comment in root deleted" />
+    <MESSAGE value="feature: controller tests &#10;added: jacoco, sonar excludes config" />
+    <MESSAGE value="fix: formatting in controllertests" />
+    <MESSAGE value="feature: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io" />
+    <MESSAGE value="feature. NOW: &#10;- 404 page&#10;- mui implemented &#10;- list function &#10;- detail page&#10;- add function &#10;- delete function &#10;fix: &#10;- SecurityConfig: no 401 on fly.io" />
+    <MESSAGE value="fix: sonar partly&#10;feature: edit function" />
+    <MESSAGE value="fix sonar issue: auth doubletten in component" />
+    <MESSAGE value="fix sonar issue: exclude config from coverage" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix sonar issue: exclude config from coverage" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/capstone_project_2023$ItemControllerTests.ic" NAME="ItemControllerTests Coverage Results" MODIFIED="1674759444525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
