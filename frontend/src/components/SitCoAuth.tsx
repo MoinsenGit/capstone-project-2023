@@ -72,8 +72,9 @@ export default function SitCoAuth (props: AuthProps) {
                     <Typography component="h1" variant="h5">
                         {props.buttonLabel}
                     </Typography>
-
                     <Box >
+
+                    <Box>
                         {errors.map((error) => <Alert key={credentials.username} severity="error">{error}</Alert>)}
                     </Box>
 
