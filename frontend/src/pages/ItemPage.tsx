@@ -6,7 +6,6 @@ import "material-react-toastify/dist/ReactToastify.css";
 import {toast, ToastContainer} from "react-toastify";
 import Button from "@mui/material/Button";
 import {
-    AppBar,
     Box,
     createTheme,
     CssBaseline,
@@ -14,10 +13,10 @@ import {
     ThemeProvider,
     Typography
 } from "@mui/material";
-import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import {Save} from "@mui/icons-material";
 import {Link, useParams} from "react-router-dom";
+import AppBarTop from "../components/AppBarTop";
 
 
 export default function ItemPage() {
@@ -55,7 +54,8 @@ export default function ItemPage() {
         const image: Image = {
             name: imageName,
         }
-        const correctedPrice = price.replace(",", ".");
+        const correctedPrice = typeof price === 'string' ?
+            price.replace(",", ".") : price;
 
         const item: Item = {
             name: name,
@@ -72,17 +72,29 @@ export default function ItemPage() {
             .catch((error) => toast.error("Error: " + error));
     }
 
+   const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+    const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        if (event.target.files && event.target.files.length > 0) {
+            const formData = new FormData();
+            formData.append("file", event.target.files[0]);
+
+            axios.post("/api/files", formData)
+                .then((response) => {
+                    setImageName(response.data.imageUrl);
+                    toast.success("Image saved and set as Image URL. Please save item to persist changes.");
+                })
+                .catch((error) => toast.error(error.message));
+        }
+    }
+
+
     const theme = createTheme();
 
     return (
         <ThemeProvider theme={theme}>
-            <AppBar position="relative" style={{background: '#91BFBC'}}>
-                <Toolbar>
-                    <Typography variant="h6" noWrap>
-                        S.IT.CO
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+            <AppBarTop/>
 
             <ToastContainer />
             <Container component="main" maxWidth="xs">
@@ -185,6 +197,25 @@ export default function ItemPage() {
                                     }}
                                 />
                             </Grid>
+                            <Grid item xs={12}>
+                                    <button onClick={(event) => {
+                                        event.preventDefault();
+                                        fileInputRef.current?.click();
+                                    }}> UPLOAD IMAGE</button>
+
+                                    <input
+                                        ref={fileInputRef}
+                                        style={{ display: "none" }}
+                                        type={"file"}
+                                        onChange={(e) => uploadImage(e)}
+                                        accept={"image/*"}
+                                    />
+                            </Grid>
+                            {imageName && (
+                                <Grid item xs={12}>
+                                    <img src={imageName} alt="preview" style={{ width: "100%" }} />
+                                </Grid>
+                            )}
                         </Grid>
 
                         <Button

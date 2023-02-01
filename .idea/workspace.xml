@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="fix sonar issue: exclude config from coverage">
+    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="feature: &#10;- file upload backend">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/controller/FileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/FileData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/service/FileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/AppBarTop.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ConfirmDelete.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/service/AppUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/service/AppUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SitCoAuth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SitCoAuth.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" afterDir="false" />
     </list>
@@ -23,24 +28,24 @@
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
         <option value="Class" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="260123" />
+        <entry key="$PROJECT_DIR$" value="270123" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -86,7 +91,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;b43fdd98b1fd705ae4c3a10cf25aad8a&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -103,6 +108,10 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/components" />
+      <recent name="$PROJECT_DIR$/frontend/public" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="de.neuefische.backend.controller" />
       <recent name="de.neuefische.backend" />
@@ -112,7 +121,7 @@
       <recent name="de.neuefische.backend.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="JUnit.ItemControllerTests">
     <configuration name="AppUserControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -128,22 +137,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppUserControllerTests.create_whenNewUserIsCreated_butUsernameExistent_return409Conflict" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.neuefische.backend.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
-      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.AppUserControllerTests" />
-      <option name="METHOD_NAME" value="create_whenNewUserIsCreated_butUsernameExistent_return409Conflict" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ItemControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -155,6 +148,22 @@
       <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
       <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.ItemControllerTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemControllerTests.createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.neuefische.backend.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
+      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.ItemControllerTests" />
+      <option name="METHOD_NAME" value="createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -197,7 +206,7 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.AppUserControllerTests" />
-      <item itemvalue="JUnit.AppUserControllerTests.create_whenNewUserIsCreated_butUsernameExistent_return409Conflict" />
+      <item itemvalue="JUnit.ItemControllerTests.createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem" />
       <item itemvalue="JUnit.ItemControllerTests.updateItem_whenLoggedInAsUser_shouldReturnItem" />
       <item itemvalue="JUnit.ItemControllerTests" />
       <item itemvalue="npm.start" />
@@ -205,10 +214,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="JUnit.AppUserControllerTests.create_whenNewUserIsCreated_butUsernameExistent_return409Conflict" />
-        <item itemvalue="JUnit.AppUserControllerTests" />
         <item itemvalue="JUnit.ItemControllerTests" />
+        <item itemvalue="JUnit.AppUserControllerTests" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="JUnit.ItemControllerTests.createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem" />
         <item itemvalue="JUnit.ItemControllerTests.updateItem_whenLoggedInAsUser_shouldReturnItem" />
       </list>
     </recent_temporary>
@@ -236,7 +245,15 @@
       <workItem from="1674815293368" duration="19521000" />
       <workItem from="1674845315030" duration="6226000" />
       <workItem from="1674853987291" duration="41012000" />
-      <workItem from="1675058765167" duration="30453000" />
+      <workItem from="1675058765167" duration="40405000" />
+      <workItem from="1675177500090" duration="260000" />
+      <workItem from="1675177804614" duration="2827000" />
+      <workItem from="1675183571269" duration="5798000" />
+      <workItem from="1675246576722" duration="4640000" />
+      <workItem from="1675251376922" duration="12313000" />
+      <workItem from="1675266500892" duration="6694000" />
+      <workItem from="1675275775281" duration="259000" />
+      <workItem from="1675277320056" duration="5740000" />
     </task>
     <task id="LOCAL-00001" summary="fix: Maven, delete doubletten">
       <created>1674548434649</created>
@@ -343,7 +360,49 @@
       <option name="project" value="LOCAL" />
       <updated>1675114706019</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feature: toastify added">
+      <created>1675152245674</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1675152245674</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fix: sonar issues: key prop in alert, String &gt; string">
+      <created>1675154422956</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1675154422956</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fix: params.id dependency in useEffect added on ItemPage.tsx to solve deploy bug">
+      <created>1675239953043</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1675239953043</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix: security.config to fix fly.io 401">
+      <created>1675242277884</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1675242277884</updated>
+    </task>
+    <task id="LOCAL-00020" summary="load item button deleted">
+      <created>1675245871069</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1675245871070</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feature: &#10;- favicon &#10;&#10;fix: sonar code smells">
+      <created>1675252799559</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1675252799559</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +413,39 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="310123" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="TEXT_FILTER_SETTINGS">
+                <TextFilterSettings>
+                  <option name="REGEX" value="true" />
+                </TextFilterSettings>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="310123" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
@@ -376,7 +467,14 @@
     <MESSAGE value="fix: sonar partly&#10;feature: edit function" />
     <MESSAGE value="fix sonar issue: auth doubletten in component" />
     <MESSAGE value="fix sonar issue: exclude config from coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix sonar issue: exclude config from coverage" />
+    <MESSAGE value="feature: toastify added" />
+    <MESSAGE value="fix: sonar issues: key prop in alert, String &gt; string" />
+    <MESSAGE value="fix: params.id dependency in useEffect added on ItemPage.tsx to solve deploy bug" />
+    <MESSAGE value="fix: security.config to fix fly.io 401" />
+    <MESSAGE value="load item button deleted" />
+    <MESSAGE value="feature: &#10;- favicon &#10;- check for id before update - function and test&#10;&#10;fix: sonar code smells" />
+    <MESSAGE value="feature: &#10;- favicon &#10;&#10;fix: sonar code smells" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: &#10;- favicon &#10;&#10;fix: sonar code smells" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/capstone_project_2023$ItemControllerTests.ic" NAME="ItemControllerTests Coverage Results" MODIFIED="1674759444525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">

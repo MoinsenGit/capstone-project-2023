@@ -23,7 +23,7 @@ type AuthProps = {
     children: JSX.Element;
 }
 
-export default function SitCoAuth (props: AuthProps) {
+export default function SitCoAuth(props: AuthProps) {
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
@@ -64,15 +64,13 @@ export default function SitCoAuth (props: AuthProps) {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                    }}
-                >
+                    }}>
                     <Avatar sx={{m: 1, bgcolor: '#91BFBC'}}>
                         <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         {props.buttonLabel}
                     </Typography>
-                    <Box >
 
                     <Box>
                         {errors.map((error) => <Alert key={credentials.username} severity="error">{error}</Alert>)}
