@@ -33,12 +33,6 @@ export default function HomePage() {
         })();
     }, []);
 
-    const loadItems = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        axios.get("/api/items")
-            .then((response) => setItems(response.data))
-            .catch((error) => toast.error(error.message));
-    }
     const navigate = useNavigate();
     const deleteItem = (event: React.FormEvent<HTMLElement>, id: (string | undefined)) => {
         event.preventDefault();
@@ -60,13 +54,8 @@ export default function HomePage() {
     const theme = createTheme();
 
     return (
-        <div className="App">
-            <form onSubmit={loadItems}>
-                <button>Load Items</button>
-            </form>
-
-            <ThemeProvider theme={theme}>
-                <AppBar position="relative" style={{background: '#91BFBC'}}>
+           <ThemeProvider theme={theme}>
+               <AppBar position="relative" style={{background: '#91BFBC'}}>
                     <Toolbar>
                         <Typography variant="h6" noWrap>
                             S.IT.CO
@@ -160,6 +149,6 @@ export default function HomePage() {
                 <LogoutButton/>
 
             </ThemeProvider>
-        </div>
+
     );
 }
