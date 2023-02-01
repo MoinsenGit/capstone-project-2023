@@ -33,7 +33,6 @@ public class ItemController {
         item.setId(id);
         return itemService.update(item);
     }
-    // beachten im Frontend - dass ID angepasst wird
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable String id) {

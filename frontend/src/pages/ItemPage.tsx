@@ -22,6 +22,7 @@ import {Link, useParams} from "react-router-dom";
 
 export default function ItemPage() {
     const [isEditItem, setIsEditItem] = useState(false);
+
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
@@ -46,7 +47,7 @@ export default function ItemPage() {
                     .catch((error) => toast.error(error.message));
             }
         })();
-    }, []);
+    }, [params.id]);
 
     const submitItem = (event: React.FormEvent<HTMLElement>) => {
         event.preventDefault();
@@ -55,6 +56,7 @@ export default function ItemPage() {
             name: imageName,
         }
         const correctedPrice = price.replace(",", ".");
+
         const item: Item = {
             name: name,
             price: correctedPrice,
@@ -64,7 +66,7 @@ export default function ItemPage() {
         }
         const axiosAction = isEditItem ?
             axios.put("/api/items/" + params.id, item) :
-            axios.post("/api/items", item);
+            axios.post("/api/items/", item);
         axiosAction
             .then(() => toast.success("Item saved."))
             .catch((error) => toast.error("Error: " + error));

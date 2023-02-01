@@ -48,8 +48,6 @@ export default function Root() {
                     <Route path={"*"} element={
                         <NotFoundPage/>
                     }/>
-
-
                 </Routes>
             </Container>
         </div>
