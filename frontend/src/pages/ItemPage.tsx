@@ -22,6 +22,7 @@ import {Link, useParams} from "react-router-dom";
 
 export default function ItemPage() {
     const [isEditItem, setIsEditItem] = useState(false);
+
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
@@ -46,7 +47,7 @@ export default function ItemPage() {
                     .catch((error) => toast.error(error.message));
             }
         })();
-    }, []);
+    }, [params.id]);
 
     const submitItem = (event: React.FormEvent<HTMLElement>) => {
         event.preventDefault();
