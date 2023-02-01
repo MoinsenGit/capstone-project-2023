@@ -56,6 +56,7 @@ export default function ItemPage() {
             name: imageName,
         }
         const correctedPrice = price.replace(",", ".");
+
         const item: Item = {
             name: name,
             price: correctedPrice,
@@ -65,7 +66,7 @@ export default function ItemPage() {
         }
         const axiosAction = isEditItem ?
             axios.put("/api/items/" + params.id, item) :
-            axios.post("/api/items", item);
+            axios.post("/api/items/", item);
         axiosAction
             .then(() => toast.success("Item saved."))
             .catch((error) => toast.error("Error: " + error));

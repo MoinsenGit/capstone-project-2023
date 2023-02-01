@@ -21,7 +21,7 @@ public class SecurityConfig {
     private final AppUserService appUserService;
 
     @Bean
-    public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
                 .httpBasic().and()
@@ -46,7 +46,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService () {
+    public UserDetailsService userDetailsService() {
         return username -> {
             Optional<AppUser> user = appUserService.findByUsername(username);
 
