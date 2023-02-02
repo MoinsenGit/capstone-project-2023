@@ -2,7 +2,6 @@ package de.neuefische.backend.service;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import de.neuefische.backend.model.FileData;
-import de.neuefische.backend.model.AppUser;
 import lombok.RequiredArgsConstructor;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -11,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,10 +22,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class FileService {
-    public static final String CREATED_BY = "createdBy";
-    public static final String CONTENT_TYPE = "_contentType";
     private final GridFsTemplate gridFsTemplate;
-    private final AppUserService appUserService;
 
     public FileData saveFile (MultipartFile multipartFile) throws IOException {
         if (multipartFile.isEmpty()) {
@@ -33,14 +30,17 @@ public class FileService {
             );
         }
 
-        AppUser appUser =  appUserService.getAuthenticatedUser();
+       final String userName = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
 
         ObjectId objectId = gridFsTemplate.store(
                 multipartFile.getInputStream(),
                 multipartFile.getOriginalFilename(),
                 multipartFile.getContentType(),
                 BasicDBObjectBuilder.start()
-                        .add(CREATED_BY, appUser.getUsername())
+                        .add("createdBy", userName)
                         .get()
         );
 
@@ -57,17 +57,17 @@ public class FileService {
         Document metadata = Optional
                 .ofNullable(gridFSFile.getMetadata())
                 .orElse(new Document(Map.of(
-                        CONTENT_TYPE, "",
-                        CREATED_BY, ""
+                        "_contentType", "",
+                        "createdBy", ""
                 )));
 
         return new FileData(
                 id,
                 "/api/files/" + id,
                 gridFSFile.getFilename(),
-                metadata.getString(CONTENT_TYPE),
+                metadata.getString("_contentType"),
                 gridFSFile.getLength(),
-                metadata.getString(CREATED_BY)
+                metadata.getString("createdBy")
         );
     }
 

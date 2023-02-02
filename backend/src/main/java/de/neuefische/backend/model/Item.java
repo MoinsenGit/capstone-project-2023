@@ -15,4 +15,5 @@ public class Item {
     private String description;
     private Image image;
     private String category;
+    private String createdBy;
 }

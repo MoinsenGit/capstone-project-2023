@@ -24,9 +24,7 @@ public class FileController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InputStreamResource> getFile(
-            @PathVariable String id
-    ) throws IOException {
+    public ResponseEntity<InputStreamResource> getFile(@PathVariable String id) throws IOException {
         GridFsResource gridFsResource = fileService.getResource(id);
 
         return ResponseEntity.ok()
@@ -34,7 +32,7 @@ public class FileController {
                 .body(new InputStreamResource(gridFsResource.getInputStream()));
     }
 
-    @GetMapping("/{id}/metadata")
+    @GetMapping("/{id}/data")
     public FileData getFileData(@PathVariable String id) {
         return fileService.getFileData(id);
     }

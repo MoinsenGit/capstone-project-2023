@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemService {
     private final ItemRepository itemRepository;
+    private final AppUserService appUserService;
 
     public List<Item> getAll() {
         return itemRepository
@@ -25,6 +26,7 @@ public class ItemService {
     }
 
     public Item create(Item item) {
+
         return itemRepository
                 .save(item);
     }
