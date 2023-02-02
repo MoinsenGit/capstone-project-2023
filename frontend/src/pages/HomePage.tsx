@@ -1,13 +1,12 @@
 import LogoutButton from "../components/LogoutButton";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {toast} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
 import {Item} from "../model/Item";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
-    AppBar,
     Box,
     Button,
     Card, CardActions, CardContent, CardMedia,
@@ -19,8 +18,8 @@ import {
     Typography
 } from "@mui/material";
 import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
 import {useNavigate} from "react-router-dom";
+import AppBarTop from "../components/AppBarTop";
 
 export default function HomePage() {
     const [items, setItems] = useState([] as Item[]);
@@ -55,14 +54,9 @@ export default function HomePage() {
 
     return (
            <ThemeProvider theme={theme}>
-               <AppBar position="relative" style={{background: '#91BFBC'}}>
-                    <Toolbar>
-                        <Typography variant="h6" noWrap>
-                            S.IT.CO
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
+               <AppBarTop/>
 
+               <ToastContainer />
                 <Container component="main" maxWidth="xs">
                     <CssBaseline/>
                     <Box

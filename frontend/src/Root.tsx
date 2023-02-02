@@ -1,13 +1,15 @@
 import {Route, Routes, useSearchParams} from "react-router-dom";
 import Auth from "./components/Auth";
+import React, {useMemo} from "react";
+import NoAuth from "./components/NoAuth";
+import Container from '@mui/material/Container';
+
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ItemPage from "./pages/ItemPage";
-import {useMemo} from "react";
-import NoAuth from "./components/NoAuth";
-import Container from '@mui/material/Container';
 import NotFoundPage from "./pages/NotFoundPage";
+import FileUploadPage from "./pages/FileUploadPage";
 
 export default function Root() {
     const [searchParams] = useSearchParams();
@@ -47,6 +49,11 @@ export default function Root() {
                     }/>
                     <Route path={"*"} element={
                         <NotFoundPage/>
+                    }/>
+                    <Route path={"/fileupload"} element={
+                        <Auth>
+                            <FileUploadPage/>
+                        </Auth>
                     }/>
                 </Routes>
             </Container>
