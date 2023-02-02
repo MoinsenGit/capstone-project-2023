@@ -32,7 +32,9 @@ class FileControllerTest {
         mockMvc.perform(multipart("/api/files")
                         .file(testFile)
                 )
-                .andExpect(status().isUnauthorized());
+                .andExpect(
+                        status().isUnauthorized()
+                );
     }
 
     @Test

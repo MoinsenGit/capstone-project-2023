@@ -16,7 +16,7 @@ public class ItemService {
 
     public List<Item> getAll() {
         return itemRepository
-                .findAll();
+                .findAllByCreatedBy(getCurrentUserId());
     }
 
     public Item getById(String id) throws Exception {
@@ -26,20 +26,25 @@ public class ItemService {
     }
 
     public Item create(Item item) {
+        return saveItem(item);
+    }
 
+    private Item saveItem(Item item) {
+        item.setCreatedBy(getCurrentUserId());
         return itemRepository
                 .save(item);
     }
 
+    private String getCurrentUserId() {
+        return appUserService.getAuthenticatedUser().getId();
+    }
+
     public Item update(Item item) {
-        return itemRepository
-                .save(item);
+        return saveItem(item);
     }
 
     public void delete(String id) {
         itemRepository
                 .deleteById(id);
     }
-
-
 }

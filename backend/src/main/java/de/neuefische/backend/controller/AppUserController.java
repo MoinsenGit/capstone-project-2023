@@ -29,7 +29,10 @@ public class AppUserController {
     @GetMapping("/me")
     public Optional<AppUser> me() {
         return appUserService.findByUsernameWithoutPassword(
-                SecurityContextHolder.getContext().getAuthentication().getName()
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getName()
         );
     }
 
