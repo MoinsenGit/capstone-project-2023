@@ -1,21 +1,10 @@
-import {
-    Alert,
-    AppBar,
-    Avatar,
-    Box,
-    createTheme,
-    CssBaseline,
-    Grid,
-    TextField,
-    ThemeProvider,
-    Typography
-} from "@mui/material";
+import {Alert, Avatar, Box, createTheme, CssBaseline, Grid, TextField, ThemeProvider, Typography} from "@mui/material";
 import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Button from "@mui/material/Button";
 import React, {FormEvent, useCallback, useState} from "react";
 import {Credentials} from "../model/Credentials";
+import AppBarTop from "./AppBarTop";
 
 type AuthProps = {
     buttonLabel: string;
@@ -51,13 +40,7 @@ export default function SitCoAuth(props: AuthProps) {
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
-                <AppBar position="relative" style={{background: '#91BFBC'}}>
-                    <Toolbar>
-                        <Typography variant="h6" noWrap>
-                            S.IT.CO
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
+                <AppBarTop/>
                 <Box
                     sx={{
                         marginTop: 8,

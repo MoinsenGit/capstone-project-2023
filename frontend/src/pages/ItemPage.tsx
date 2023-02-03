@@ -3,8 +3,9 @@ import React, {useEffect, useState} from "react";
 import {Image, Item} from "../model/Item";
 import axios from "axios";
 import "material-react-toastify/dist/ReactToastify.css";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import Button from "@mui/material/Button";
+import UploadIcon from '@mui/icons-material/Upload';
 import {
     Box,
     createTheme,
@@ -95,8 +96,6 @@ export default function ItemPage() {
     return (
         <ThemeProvider theme={theme}>
             <AppBarTop/>
-
-            <ToastContainer />
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Box
@@ -184,7 +183,7 @@ export default function ItemPage() {
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <TextField
                                     required
                                     fullWidth
@@ -197,11 +196,17 @@ export default function ItemPage() {
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                    <button onClick={(event) => {
+
+                            <Grid item xs={6}>
+                                    <Button
+                                        variant={"contained"}
+                                        component={"label"}
+                                        startIcon={<UploadIcon />}
+                                        onClick={(event) => {
                                         event.preventDefault();
                                         fileInputRef.current?.click();
-                                    }}> UPLOAD IMAGE</button>
+                                    }}> UPLOAD IMAGE
+                                    </Button>
 
                                     <input
                                         ref={fileInputRef}
@@ -236,9 +241,8 @@ export default function ItemPage() {
                         </Grid>
                     </Grid>
                 </Box>
+                <LogoutButton/>
             </Container>
-
-            <LogoutButton/>
 
         </ThemeProvider>
 

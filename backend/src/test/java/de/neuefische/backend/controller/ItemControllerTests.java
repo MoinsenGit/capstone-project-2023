@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,7 +40,7 @@ class ItemControllerTests {
     @Test
     @WithMockUser(username = "testuser")
     void createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem() throws Exception {
-        Item testItem = new Item("1", "test", 1.0, "test", null, "test");
+        Item testItem = new Item("1", "test", 1.0, "test", null, "test", "testuser");
         final String json = new ObjectMapper().writerWithDefaultPrettyPrinter()
                 .writeValueAsString(testItem);
 
@@ -55,7 +56,7 @@ class ItemControllerTests {
 
     @Test
     void getAll_whenNotLoggedIn_Return401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/items"))
+        mockMvc.perform(get("/api/items"))
                 .andExpect(status().isUnauthorized()
                 );
     }
@@ -89,7 +90,8 @@ class ItemControllerTests {
                 "price":1.0,
                 "description":"test",
                 "image":null,
-                "category":"test"
+                "category":"test",
+                "createdBy":"testuser"
                 }
                 """;
 
@@ -125,7 +127,8 @@ class ItemControllerTests {
                 "price":1.0,
                 "description":"test",
                 "image":null,
-                "category":"test"
+                "category":"test",
+                "createdBy":"testuser"
                 }
                 """;
 
@@ -141,7 +144,8 @@ class ItemControllerTests {
                 "price":1.0,
                 "description":"test",
                 "image":null,
-                "category":"test"
+                "category":"test",
+                "createdBy":"testuser"
                 }
                 """;
 
@@ -176,7 +180,8 @@ class ItemControllerTests {
                 "price":1.0,
                 "description":"test",
                 "image":null,
-                "category":"test"
+                "category":"test",
+                "createdBy":"testuser"
                 }
                 """;
 

@@ -10,6 +10,7 @@ import SignUpPage from "./pages/SignUpPage";
 import ItemPage from "./pages/ItemPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import FileUploadPage from "./pages/FileUploadPage";
+import {ToastContainer} from "react-toastify";
 
 export default function Root() {
     const [searchParams] = useSearchParams();
@@ -18,6 +19,7 @@ export default function Root() {
         [searchParams]);
 
     return (
+
         <div>
             <Container maxWidth="sm">
 
@@ -56,6 +58,9 @@ export default function Root() {
                         </Auth>
                     }/>
                 </Routes>
+
+                <ToastContainer/>
+
             </Container>
         </div>
 
