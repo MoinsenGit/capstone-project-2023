@@ -23,6 +23,11 @@ public class ItemController {
         return itemService.getAll();
     }
 
+    @PostMapping("/filter")
+    public List<Item> filterItems(@RequestBody Item exampleItem) {
+        return itemService.filterItems(exampleItem);
+    }
+
     @GetMapping("/{id}")
     public Item getById(@PathVariable String id) throws Exception {
         return itemService.getById(id);
