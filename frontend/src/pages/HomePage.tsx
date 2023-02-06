@@ -3,27 +3,35 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
-import {Item} from "../model/Item";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
     Box,
     Button,
-    Card, CardActions, CardContent, CardMedia,
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Container,
     createTheme,
-    CssBaseline, Dialog, DialogActions, DialogTitle,
-    Grid,
-    Stack,
+    CssBaseline,
+    Dialog,
+    DialogActions,
+    DialogTitle, FormControl,
+    Grid, InputLabel, MenuItem, Select, SelectChangeEvent,
+    Stack, TextField,
     ThemeProvider,
     Typography
 } from "@mui/material";
-import Container from "@mui/material/Container";
 import {useNavigate} from "react-router-dom";
 import AppBarTop from "../components/AppBarTop";
+import {Item} from "../model/Item";
 
 export default function HomePage() {
     const [items, setItems] = useState([] as Item[]);
-    const [itemToDelete, setItemToDelete] = useState("");
+    const [filterStatus, setFilterStatus] = useState("");
+    const [filterName, setFilterName] = useState("");
+    const [idOfItemToDelete, setIdOfItemToDelete] = useState("");
 
     useEffect(() => {
         (async () => {
@@ -37,19 +45,18 @@ export default function HomePage() {
 
     const openDeleteConfirmationDialog = (id: (string | undefined)) => {
         if (id) {
-            setItemToDelete(id);
+            setIdOfItemToDelete(id);
         }
         setOpenDeleteConfirmation(true);
     };
 
     const cancelDelete = () => {
-        // does not delete item, simply closes dialog
         setOpenDeleteConfirmation(false);
     };
 
     const deleteItem = (event: React.FormEvent<HTMLElement>) => {
         event.preventDefault();
-        const id = itemToDelete;
+        const id = idOfItemToDelete;
         axios.delete("/api/items/" + id)
             .then(() => {
                 setItems(items.filter(item => item.id !== id));
@@ -59,12 +66,53 @@ export default function HomePage() {
             .finally(() => setOpenDeleteConfirmation(false));
     }
 
+    const [openDeleteConfirmation, setOpenDeleteConfirmation] = React.useState(false);
+
     const viewItem = (event: React.FormEvent<HTMLElement>, id: (string | undefined)) => {
         event.preventDefault();
         navigate("/itemdetails/" + id);
     }
 
-    const [openDeleteConfirmation, setOpenDeleteConfirmation] = React.useState(false);
+    const changeStatus = (event: SelectChangeEvent, itemId: (string | undefined)) => {
+        event.preventDefault();
+        const newStatus = event.target.value;
+        axios.patch("/api/items/" + itemId + "/status/" + newStatus)
+            .then(() => {
+                setItems(items
+                    .map(item => {
+                        if(item.id === itemId) {
+                            item.status = newStatus;
+                        }
+                        return item;
+                    }));
+                toast.success("Item status changed successfully to "+newStatus+".");
+            })
+            .catch((error) => toast.error(error.message));
+    };
+
+    const changeFilterStatus = (event: SelectChangeEvent) => {
+        event.preventDefault();
+        setFilterStatus(event.target.value);
+        filterItems(event.target.value, filterName);
+    };
+    const changeFilterName = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        event.preventDefault();
+        setFilterName(event.target.value);
+        filterItems(filterStatus, event.target.value);
+    };
+
+    const filterItems = (status: string, name: string) => {
+        const exampleItem = {} as Item;
+        if(status === "AVAILABLE" || status === "RESERVED" || status === "SOLD") {
+            exampleItem.status = status;
+        }
+        if(name !== null && name !== "") {
+            exampleItem.name = name;
+        }
+        axios.post("/api/items/filter", exampleItem)
+            .then((response) => setItems(response.data))
+            .catch((error) => toast.error(error.message));
+    };
 
     const theme = createTheme();
 
@@ -91,7 +139,7 @@ export default function HomePage() {
                             S.It.Co
                         </Typography>
                         <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                            Welcome to S.It.Co - your place for collecting all your favorite items.
+                            Welcome to S.It.Co - your place for collecting all of your favorite items.
                         </Typography>
 
                         <Stack
@@ -110,7 +158,43 @@ export default function HomePage() {
                 </Box>
 
                 <Container sx={{py: 8}} maxWidth="md">
-                    <Grid container spacing={4}>
+
+                    <Grid container spacing={6}>
+                        <Grid item xs={12}>
+                            <Grid container justifyContent="center" spacing={6}>
+                                <Container maxWidth="sm">
+                                    <TextField
+                                        fullWidth={true}
+                                        id="filter"
+                                        name="filter"
+                                        value={filterName}
+                                        label="Type to filter for name"
+                                        onChange={(event) => changeFilterName(event)}
+                                    />
+                                </Container>
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Grid container justifyContent="center" spacing={6}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="status-select-label">Select status to filter</InputLabel>
+                                    <Select
+                                        fullWidth={true}
+                                        labelId="filter-status-select"
+                                        value={filterStatus}
+                                        label="Select status to filter"
+                                        onChange={(event) => changeFilterStatus(event)}
+                                    >
+                                        <MenuItem value="AVAILABLE">available</MenuItem>
+                                        <MenuItem value="RESERVED">reserved</MenuItem>
+                                        <MenuItem value="SOLD">sold</MenuItem>
+                                        <MenuItem value="">no filter</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                        </Grid>
+
                         {items.map((item) =>
                             (
                                 <Grid key={item.id} bgcolor={"grey"} mt={4}>
@@ -135,6 +219,21 @@ export default function HomePage() {
                                             <Typography>
                                                 Category: {item.category}
                                             </Typography>
+
+                                            <FormControl fullWidth>
+                                                <InputLabel id="status-select-label">Status</InputLabel>
+                                                <Select
+                                                    labelId="status-select-label"
+                                                    value={item.status}
+                                                    label="status"
+                                                    onChange={(event) => changeStatus(event, item.id)}
+                                                >
+                                                    <MenuItem value="AVAILABLE">available</MenuItem>
+                                                    <MenuItem value="RESERVED">reserved</MenuItem>
+                                                    <MenuItem value="SOLD">sold</MenuItem>
+                                                </Select>
+                                            </FormControl>
+
                                         </CardContent>
                                         <CardActions>
                                             <Button onClick={(event) => viewItem(event, item.id)} variant="outlined"
@@ -159,7 +258,7 @@ export default function HomePage() {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Do you really want to delete this item?"}
+                    {"Please confirm, that this Item should be deleted."}
                 </DialogTitle>
                 <DialogActions>
                     <Button onClick={cancelDelete} autoFocus>Cancel</Button>

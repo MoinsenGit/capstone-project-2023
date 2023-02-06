@@ -18,12 +18,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -257,7 +257,7 @@ class ItemControllerTests {
 
     private List<String> extractItemIds(final String json) throws IOException {
         return new ObjectMapper().readValue(json, List.class).stream()
-                .map(item -> ((java.util.Map<String, String>) item).get("id"))
+                .map(item -> ((Map<String, String>) item).get("id"))
                 .toList();
     }
 
@@ -324,4 +324,44 @@ class ItemControllerTests {
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
        assertThat(extractItemIds(response8)).containsExactlyInAnyOrder( "1","2","3","4","5");
     }
+
+    @Test
+    void updateStatus_whenNotLoggedIn_shouldReturn401() throws Exception {
+        mockMvc.perform(patch("/api/items/1/status/AVAILABLE"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(username = "testuser")
+    void updateStatus_whenLoggedInAsUser_shouldUpdateStatus() throws Exception {
+        appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
+        itemRepository.save(Item.builder().id("3").category("Test Category").createdBy("2").name("Name").status(Status.AVAILABLE).build());
+
+        mockMvc.perform(patch("/api/items/3/status/RESERVED"))
+                .andExpect(status().isOk());
+        assertThat(itemRepository.findById("3").get().getStatus()).isEqualTo(Status.RESERVED);
+    }
+
+    @Test
+    @WithMockUser(username = "testuser")
+    void updateStatus_whenLoggedInAsUser_doesNotUpdateItemOfOtherUser() throws Exception {
+        appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
+        itemRepository.save(Item.builder().id("4").category("Test Category").createdBy("1").status(Status.AVAILABLE).build());
+
+        mockMvc.perform(patch("/api/items/3/status/RESERVED"))
+                .andExpect(status().isOk());
+        assertThat(itemRepository.findById("4").get().getStatus()).isEqualTo(Status.AVAILABLE);
+    }
+
+    @Test
+    @WithMockUser(username = "testuser")
+    void updateStatus_whenLoggedInAsUser_doesNothingIfItemNotFound() throws Exception {
+        appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
+        itemRepository.save(Item.builder().id("4").createdBy("2").name("item name").status(Status.AVAILABLE).build());
+
+        mockMvc.perform(patch("/api/items/3000/status/RESERVED"))
+                .andExpect(status().isOk());
+        assertThat(itemRepository.findById("4").get().getStatus()).isEqualTo(Status.AVAILABLE);
+    }
+
 }

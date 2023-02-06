@@ -40,7 +40,7 @@ public class ItemService {
     }
 
     private Item saveItem(Item item) {
-        if(item.getStatus() == null) {
+        if (item.getStatus() == null) {
             item.setStatus(Status.AVAILABLE);
         }
         item.setCreatedBy(getCurrentUserId());
@@ -55,6 +55,14 @@ public class ItemService {
     public void delete(String id) {
         itemRepository
                 .deleteById(id);
+    }
+
+    public void updateStatus(String id, Status newStatus) {
+        itemRepository.findByIdAndCreatedBy(id, getCurrentUserId())
+                .map(item -> {
+                    item.setStatus(newStatus);
+                    return itemRepository.save(item);
+                });
     }
 
     public List<Item> filterItems(final Item exampleItem) {

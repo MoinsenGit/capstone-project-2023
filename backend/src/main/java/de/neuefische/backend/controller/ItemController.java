@@ -1,6 +1,7 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.Item;
+import de.neuefische.backend.model.Status;
 import de.neuefische.backend.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -44,4 +45,8 @@ public class ItemController {
         itemService.delete(id);
     }
 
+    @PatchMapping("/{id}/status/{newStatus}")
+    public void updateStatus(@PathVariable String id, @PathVariable Status newStatus) {
+        itemService.updateStatus(id, newStatus);
+    }
 }
