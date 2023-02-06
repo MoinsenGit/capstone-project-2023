@@ -59,9 +59,9 @@ public class ItemService {
 
     public void updateStatus(String id, Status newStatus) {
         itemRepository.findByIdAndCreatedBy(id, getCurrentUserId())
-                .map(item -> {
+                .ifPresent(item -> {
                     item.setStatus(newStatus);
-                    return itemRepository.save(item);
+                    itemRepository.save(item);
                 });
     }
 
