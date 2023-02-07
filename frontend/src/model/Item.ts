@@ -9,4 +9,6 @@ export type Item = {
     description:string;
     image:Image;
     category:string;
+
+    status: string;
 }

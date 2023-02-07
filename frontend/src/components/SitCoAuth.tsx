@@ -41,9 +41,29 @@ export default function SitCoAuth(props: AuthProps) {
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <AppBarTop/>
+{/*                <Box
+                    maxWidth="100%"
+                    component="img"
+                    alt="S.IT.CO Logo"
+                    src="/sitco-logo.png"
+                />*/}
+                <Container maxWidth="sm">
+                    <Typography
+                        component="h1"
+                        variant="h2"
+                        align="center"
+                        color="text.primary"
+                        gutterBottom
+                    >
+                        S.It.Co
+                    </Typography>
+                    <Typography variant="h5" align="center" color="text.secondary" paragraph>
+                        Welcome to S.It.Co - your place for collecting all of your favorite items.
+                    </Typography>
+                </Container>
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 4,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',

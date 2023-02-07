@@ -10,7 +10,7 @@ import {
     Box,
     createTheme,
     CssBaseline,
-    Grid, InputAdornment, TextField,
+    Grid, InputAdornment, MenuItem, Select, TextField,
     ThemeProvider,
     Typography
 } from "@mui/material";
@@ -28,6 +28,7 @@ export default function ItemPage() {
     const [description, setDescription] = useState("");
     const [imageName, setImageName] = useState("");
     const [category, setCategory] = useState("");
+    const [status, setStatus] = useState("AVAILABLE");
 
     const params = useParams();
 
@@ -43,6 +44,7 @@ export default function ItemPage() {
                         setDescription(response.data.description ?? "");
                         setImageName(response.data.image.name ?? "");
                         setCategory(response.data.category ?? "");
+                        setStatus(response.data.status ?? "AVAILABLE");
                     })
                     .catch((error) => toast.error(error.message));
             }
@@ -64,6 +66,7 @@ export default function ItemPage() {
             description: description,
             image: image,
             category: category,
+            status: status,
         }
         const axiosAction = isEditItem ?
             axios.put("/api/items/" + params.id, item) :
@@ -120,10 +123,11 @@ export default function ItemPage() {
                             align="center"
                             color="text.secondary"
                             paragraph>
-                            happy. happy. happy.
+                            Make art lovers happy!
                         </Typography>
 
                     </Container>
+
                     <Box component="form" noValidate onSubmit={submitItem} sx={{mt: 3}}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -182,6 +186,20 @@ export default function ItemPage() {
                                         setCategory(event.target.value)
                                     }}
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Select
+                                    required
+                                    fullWidth
+                                    labelId="status-select-label"
+                                    value={status}
+                                    label="status"
+                                    onChange={(event) => setStatus(event.target.value)}
+                                >
+                                    <MenuItem value="AVAILABLE">available</MenuItem>
+                                    <MenuItem value="RESERVED">reserved</MenuItem>
+                                    <MenuItem value="SOLD">sold</MenuItem>
+                                </Select>
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField

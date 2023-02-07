@@ -9,18 +9,14 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ItemPage from "./pages/ItemPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import FileUploadPage from "./pages/FileUploadPage";
 import {ToastContainer} from "react-toastify";
 
 export default function Root() {
     const [searchParams] = useSearchParams();
     const redirect = useMemo(
-        () => searchParams.get("redirect") || "/",
-        [searchParams]);
+        () => searchParams.get("redirect") || "/", [searchParams]);
 
     return (
-
-        <div>
             <Container maxWidth="sm">
 
                 <Routes>
@@ -52,17 +48,11 @@ export default function Root() {
                     <Route path={"*"} element={
                         <NotFoundPage/>
                     }/>
-                    <Route path={"/fileupload"} element={
-                        <Auth>
-                            <FileUploadPage/>
-                        </Auth>
-                    }/>
                 </Routes>
 
                 <ToastContainer/>
 
             </Container>
-        </div>
 
     )
 

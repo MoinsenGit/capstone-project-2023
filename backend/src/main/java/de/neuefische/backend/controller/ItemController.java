@@ -1,6 +1,7 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.Item;
+import de.neuefische.backend.model.Status;
 import de.neuefische.backend.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,11 @@ public class ItemController {
         return itemService.getAll();
     }
 
+    @PostMapping("/filter")
+    public List<Item> filterItems(@RequestBody Item exampleItem) {
+        return itemService.filterItems(exampleItem);
+    }
+
     @GetMapping("/{id}")
     public Item getById(@PathVariable String id) throws Exception {
         return itemService.getById(id);
@@ -39,4 +45,8 @@ public class ItemController {
         itemService.delete(id);
     }
 
+    @PatchMapping("/{id}/status/{newStatus}")
+    public void updateStatus(@PathVariable String id, @PathVariable Status newStatus) {
+        itemService.updateStatus(id, newStatus);
+    }
 }
