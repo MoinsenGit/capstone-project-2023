@@ -1,10 +1,11 @@
-import {Alert, Avatar, Box, createTheme, CssBaseline, Grid, TextField, ThemeProvider, Typography} from "@mui/material";
+import {Alert, Avatar, Box, createTheme, Grid, TextField, ThemeProvider, Typography} from "@mui/material";
 import Container from "@mui/material/Container";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Button from "@mui/material/Button";
 import React, {FormEvent, useCallback, useState} from "react";
 import {Credentials} from "../model/Credentials";
 import AppBarTop from "./AppBarTop";
+import Footer from "./Footer";
 
 type AuthProps = {
     buttonLabel: string;
@@ -38,17 +39,18 @@ export default function SitCoAuth(props: AuthProps) {
 
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline/>
+            <Container component="main" style={{ background: '#f6f6ee' }} sx={{p:0}} >
+
                 <AppBarTop/>
-{/*                <Box
+              <Box
                     maxWidth="100%"
                     component="img"
                     alt="S.IT.CO Logo"
-                    src="/sitco-logo.png"
-                />*/}
+                    src="/sitco-logo_round.png"
+                    sx={{mt: 2, mb: 2}}
+                />
                 <Container maxWidth="sm">
-                    <Typography
+{/*                    <Typography
                         component="h1"
                         variant="h2"
                         align="center"
@@ -56,9 +58,12 @@ export default function SitCoAuth(props: AuthProps) {
                         gutterBottom
                     >
                         S.It.Co
-                    </Typography>
+                    </Typography>*/}
                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                        Welcome to S.It.Co - your place for collecting all of your favorite items.
+                        Welcome to S.IT.CO <br></br>
+                    </Typography>
+                    <Typography variant="h6" align="center" color="text.secondary" paragraph>
+                        your place for collecting all of your favorite items
                     </Typography>
                 </Container>
                 <Box
@@ -121,10 +126,7 @@ export default function SitCoAuth(props: AuthProps) {
                             </Grid>
                         </Grid>
                     </Box>
-                    <Typography variant="body2" color="text.secondary" align="center">
-                        {' © '}
-                        {new Date().getFullYear()}
-                    </Typography>
+                    <Footer/>
                 </Box>
             </Container>
         </ThemeProvider>

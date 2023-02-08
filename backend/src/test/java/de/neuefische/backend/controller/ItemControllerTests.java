@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -257,7 +256,7 @@ class ItemControllerTests {
 
     private List<String> extractItemIds(final String json) throws IOException {
         return new ObjectMapper().readValue(json, List.class).stream()
-                .map(item -> ((Map<String, String>) item).get("id"))
+                .map(item -> ((java.util.Map<String, String>) item).get("id"))
                 .toList();
     }
 
@@ -320,7 +319,7 @@ class ItemControllerTests {
 
        String response8 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"createdBy\":\"1\"}")) // createdBy will be overridden by the logged in user
+                        .content("{\"createdBy\":\"1\"}")) // createdBy will be overridden by the logged-in user
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
        assertThat(extractItemIds(response8)).containsExactlyInAnyOrder( "1","2","3","4","5");
     }

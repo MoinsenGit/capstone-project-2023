@@ -6,10 +6,19 @@ import {Link} from "react-router-dom";
 export default function AppBarTop( ) {
 
     return (
-        <AppBar position="relative" style={{background: '#91BFBC'}}>
+        <AppBar
+            position="relative"
+            style={{background: '#91BFBC'}}
+        >
             <Toolbar>
-                <Typography variant="h6" noWrap>
-                    <Link style={{textDecoration:"none", color:"white"}} to={"/"}>S.It.Co</Link>
+                <Typography
+                    variant="h6">
+                    <Link
+                        style={{textDecoration:"none", color:"white"}}
+                        to={"/"}
+                    >
+                        S.IT.CO
+                    </Link>
                 </Typography>
             </Toolbar>
         </AppBar>

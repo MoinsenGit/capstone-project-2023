@@ -5,7 +5,7 @@ export type Image = {
 export type Item = {
     id?:string;
     name:string;
-    price:string;
+    price:number;
     description:string;
     image:Image;
     category:string;
