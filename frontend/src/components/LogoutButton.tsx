@@ -21,7 +21,7 @@ export default function LogoutButton() {
                 <Button
                     variant="outlined"
                     onClick={logout}
-                    // sx={{color: "white", borderColor: "white"}}
+                    sx={{backgroundColor: "white", borderColor: "#91BFBC", color: "#91BFBC", m: 2}}
                 >
                     Logout
                 </Button>

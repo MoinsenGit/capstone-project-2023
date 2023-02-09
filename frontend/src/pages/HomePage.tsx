@@ -1,12 +1,10 @@
-import LogoutButton from "../components/LogoutButton";
 import React, {useEffect, useState} from "react";
-import axios from "axios";
+import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import {categories, states} from "../model/Constants";
-
 import {
     Box,
     Button,
@@ -31,10 +29,12 @@ import {
     ThemeProvider,
     Typography
 } from "@mui/material";
-import {useNavigate} from "react-router-dom";
+
+import LogoutButton from "../components/LogoutButton";
 import AppBarTop from "../components/AppBarTop";
-import {Item} from "../model/Item";
 import Footer from "../components/Footer";
+import {Item} from "../model/Item";
+import {categories, states} from "../model/Constants";
 
 export default function HomePage() {
     const [items, setItems] = useState([] as Item[]);
@@ -77,24 +77,24 @@ export default function HomePage() {
         navigate("/itemdetails/" + id);
     }
 
-/*
-    const changeStatus = (event: SelectChangeEvent, itemId: (string | undefined)) => {
-        event.preventDefault();
-        const newStatus = event.target.value;
-        axios.patch("/api/items/" + itemId + "/status/" + newStatus)
-            .then(() => {
-                setItems(items
-                    .map(item => {
-                        if (item.id === itemId) {
-                            item.status = newStatus;
-                        }
-                        return item;
-                    }));
-                toast.success("Item status changed successfully to " + newStatus + ".");
-            })
-            .catch((error) => toast.error(error.message));
-    };
-*/
+    /*
+        const changeStatus = (event: SelectChangeEvent, itemId: (string | undefined)) => {
+            event.preventDefault();
+            const newStatus = event.target.value;
+            axios.patch("/api/items/" + itemId + "/status/" + newStatus)
+                .then(() => {
+                    setItems(items
+                        .map(item => {
+                            if (item.id === itemId) {
+                                item.status = newStatus;
+                            }
+                            return item;
+                        }));
+                    toast.success("Item status changed successfully to " + newStatus + ".");
+                })
+                .catch((error) => toast.error(error.message));
+        };
+    */
 
     const changeFilterStatus = (event: SelectChangeEvent) => {
         event.preventDefault();
@@ -112,11 +112,12 @@ export default function HomePage() {
         filterItems(filterStatus, filterName, event.target.value);
     };
 
-    const convert = Intl.NumberFormat('de-DE', {
-        style: 'currency',
-        currency: 'EUR',
-        minimumFractionDigits: 2,
-    });
+    const clearFilter = () => {
+        setFilterStatus("");
+        setFilterName("");
+        setFilterCategory("");
+        filterItems("", "", "");
+    }
 
     const filterItems = (status: string, name: string, category: string) => {
         const exampleItem = {} as Item;
@@ -126,7 +127,7 @@ export default function HomePage() {
         if (name !== null && name !== "") {
             exampleItem.name = name;
         }
-        if(categories.includes(category)) {
+        if (categories.includes(category)) {
             exampleItem.category = category;
         }
         axios.post("/api/items/filter", exampleItem)
@@ -134,43 +135,40 @@ export default function HomePage() {
             .catch((error) => toast.error(error.message));
     };
 
+    const convert = Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 2,
+    });
+
     const theme = createTheme();
 
     return (
         <ThemeProvider theme={theme}>
             <AppBarTop/>
-
             <CssBaseline/>
             <Grid container={true}
                   spacing={0}
                   direction="row"
+                  display="flex"
                   justifyContent="center"
                   alignItems="flex-start"
                   bgcolor={"#f6f6ee"}>
 
-                <Grid item md={4}>
-                    <Box
-                        maxWidth="100%"
+                <Grid item md={4}
+                      justifyContent="center"
+                      alignItems="center"
+                        maxWidth="45%"
                         component="img"
                         alt="S.IT.CO Logo"
                         src="/sitco-logo_round.png"
-                        //  sx={{mt: 2, mb: 2}}
-                    />
-                    {/*                    <Typography
-                        component="h1"
-                        variant="h2"
-                        align="center"
-                        color="text.primary"
-                        gutterBottom
-                    >
-                        S.IT.CO
-                    </Typography>*/}
+                     sx={{mt: 2, mb: 2}}>
                 </Grid>
                 <Grid item md={8} justifyContent="center">
                     <Typography
                         variant="h5"
                         align="center"
-                        color="text.secondary"
+                        color="#91BFBC"
                         paragraph
                     >
                         Welcome to S.IT.CO! <br/>
@@ -179,22 +177,13 @@ export default function HomePage() {
                 </Grid>
             </Grid>
 
-            <Grid item md={12} justifyContent="center">
-{/*                <Button
-                    href={"/itemdetails"}
-                    variant="contained"
-                    sx={{bgcolor: '#91BFBC'}}
-                >
-                    Add new Item
-                </Button>*/}
-            </Grid>
             <Grid container={true}
                   spacing={4}
                   justifyContent="center"
                   bgcolor={"#f6f6ee"}>
                 <Grid item spacing={3} md={8}>
                     <Typography
-                        variant="body2"
+                        variant="body1"
                         color="text.secondary"
                     >
                         Filter for what you want to see.
@@ -206,6 +195,7 @@ export default function HomePage() {
                         value={filterName}
                         label="Type to filter for title."
                         onChange={(event) => changeFilterName(event)}
+                        margin={"normal"}
                     />
                     <FormControl fullWidth>
                         <InputLabel id="status-select-label">Select category to filter</InputLabel>
@@ -233,64 +223,69 @@ export default function HomePage() {
                             <MenuItem value="SHOW ALL">no filter</MenuItem>
                         </Select>
                     </FormControl>
+                    <Button onClick={() => clearFilter()}>Clear filter</Button>
                 </Grid>
             </Grid>
 
-            <Grid container={true} spacing={0}>
+            <Grid container={true} spacing={0} bgcolor={"#f6f6ee"}>
                 {items.map((item) => (
-                    <Grid item key={item.id} bgcolor={"grey"} mt={4} xs spacing={4}>
-                        <Card
-                            sx={{height: '100%', display: 'flex', flexDirection: 'column',}}
-                        >
-                            <CardMedia
-                                component="img"
-                                image={item.image.name}
-                                alt={item.name}
-                            />
-                            <CardContent sx={{flexGrow: 1}}>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {item.name}
-                                </Typography>
-                                <Typography color="text.secondary">
-                                    {item.description}
-                                </Typography>
-                                <Typography color={"red"}>
-                                    Price: {convert.format(item.price)}
-                                </Typography>
-                                <Typography>
-                                    Category: {item.category}
-                                </Typography>
-                                <Typography>
-                                    Status: {item.status}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button
-                                    onClick={() => openDeleteConfirmationDialog(item.id)}
-                                    variant="outlined"
-                                    size="small"
-                                    startIcon={<DeleteIcon/>}
-                                >
-                                    Delete
-                                </Button>
+                    <Grid item key={item.id} bgcolor={"#f6f6ee"} mb={4} xs >
+                            <Card
+                                sx={{height: '100%', maxWidth: 340, display: 'flex', flexDirection: 'column', margin: {xs: 1, sm: 2, md: 3}}}
+                            >
+                                <CardMedia
+                                    component="img"
+                                    image={item.image.name}
+                                    alt={item.name}
+                                />
+                                <CardContent sx={{flexGrow: 1}}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {item.name}
+                                    </Typography>
+                                    <Typography color="text.secondary">
+                                        {item.description}
+                                    </Typography>
+                                    <Typography color={"red"}>
+                                        Price: {convert.format(item.price)}
+                                    </Typography>
+                                    <Typography>
+                                        Category: {item.category}
+                                    </Typography>
+                                    <Typography>
+                                        Status: {item.status}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button
+                                        onClick={() => openDeleteConfirmationDialog(item.id)}
+                                        variant="outlined"
+                                        size="small"
+                                        startIcon={<DeleteIcon/>}
+                                    ></Button>
 
-                                <Button
-                                    onClick={(event) => viewItem(event, item.id)}
-                                    variant="outlined"
-                                    size="small"
-                                >
-                                    View Details
-                                </Button>
-                            </CardActions>
-                        </Card>
+                                    <Button
+                                        fullWidth={true}
+                                        onClick={(event) => viewItem(event, item.id)}
+                                        variant="outlined"
+                                        size="small"
+                                    >
+                                        View / Edit Details
+                                    </Button>
+                                </CardActions>
+                            </Card>
+
                     </Grid>
                 ))}
-                <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                <Grid container={true}
+                      bgcolor={"#f6f6ee"}>
+                    <LogoutButton/>
+                </Grid>
+                <Box sx={{'& > :not(style)': {m: 1}}}>
                     <Fab aria-label="add"
-                         style={{position:'fixed', bottom: 30, right: 20}}
+                         style={{position: 'fixed', bottom: 30, right: 20}}
                          href={"/itemdetails"}
                          sx={{bgcolor: '#91BFBC', color: "white"}}>
-                        <AddIcon />
+                        <AddIcon/>
                     </Fab>
                 </Box>
             </Grid>
@@ -312,7 +307,7 @@ export default function HomePage() {
                 </DialogActions>
             </Dialog>
 
-            <LogoutButton/>
+
             <Footer/>
 
         </ThemeProvider>

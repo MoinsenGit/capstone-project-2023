@@ -43,22 +43,14 @@ export default function SitCoAuth(props: AuthProps) {
 
                 <AppBarTop/>
               <Box
-                    maxWidth="100%"
+                    maxWidth="70%"
                     component="img"
+                    alignItems={"center"}
                     alt="S.IT.CO Logo"
                     src="/sitco-logo_round.png"
                     sx={{mt: 2, mb: 2}}
                 />
                 <Container maxWidth="sm">
-{/*                    <Typography
-                        component="h1"
-                        variant="h2"
-                        align="center"
-                        color="text.primary"
-                        gutterBottom
-                    >
-                        S.It.Co
-                    </Typography>*/}
                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
                         Welcome to S.IT.CO <br></br>
                     </Typography>

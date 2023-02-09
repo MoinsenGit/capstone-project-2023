@@ -20,8 +20,6 @@ import {Save} from "@mui/icons-material";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import AppBarTop from "../components/AppBarTop";
 import Footer from "../components/Footer";
-import AddIcon from "@mui/icons-material/Add";
-
 
 export default function ItemPage() {
     const [isEditItem, setIsEditItem] = useState(false);
@@ -219,6 +217,7 @@ export default function ItemPage() {
                                     </Select>
                                 </FormControl>
                             </Grid>
+
                             <Grid item xs={6}>
                                 <TextField
                                     required
@@ -259,6 +258,7 @@ export default function ItemPage() {
                             )}
                         </Grid>
 
+                            <Grid item xs={6}>
                         <Button
                             variant="contained"
                             fullWidth
@@ -266,20 +266,21 @@ export default function ItemPage() {
                             startIcon={<Save/>}
                             onClick={(event) => submitItemAndGoHome(event)}
                         >
-                            Save and go back to Home Page
+                            Save & back
                         </Button>
+                    </Grid>
 
+                                <Grid item xs={6}>
                         <Button
                             variant="contained"
                             fullWidth
                             sx={{mt: 3, mb: 2, bgcolor: '#91BFBC'}}
                             startIcon={<Save/>}
-                            endIcon={<AddIcon/>}
                             onClick={(event) => submitItemAndAddNewItem(event)}
                         >
-                            Save and add new Item
+                            Save & Next
                         </Button>
-
+                    </Grid>
                     </Box>
                     <Grid container justifyContent="center">
                         <Grid item>
