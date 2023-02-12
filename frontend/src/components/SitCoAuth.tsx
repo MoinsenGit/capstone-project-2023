@@ -1,4 +1,4 @@
-import {Alert, Avatar, Box, createTheme, Grid, TextField, ThemeProvider, Typography} from "@mui/material";
+import {Alert, Avatar, Box, CssBaseline, Grid, TextField, ThemeProvider, Typography} from "@mui/material";
 import Container from "@mui/material/Container";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Button from "@mui/material/Button";
@@ -6,6 +6,7 @@ import React, {FormEvent, useCallback, useState} from "react";
 import {Credentials} from "../model/Credentials";
 import AppBarTop from "./AppBarTop";
 import Footer from "./Footer";
+import theme from "../styles/theme";
 
 type AuthProps = {
     buttonLabel: string;
@@ -35,27 +36,38 @@ export default function SitCoAuth(props: AuthProps) {
         props.handleSubmit(credentials, (errors: string[]) => setErrors(errors));
     }
 
-    const theme = createTheme();
-
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" style={{ background: '#f6f6ee' }} sx={{p:0}} >
-
-                <AppBarTop/>
-              <Box
+            <CssBaseline/>
+            <AppBarTop/>
+            <Container
+                component="main"
+                maxWidth={false}
+                style={{background: '#f6f6ee'}}
+                sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}>
+                <Box
                     maxWidth="70%"
                     component="img"
                     alignItems={"center"}
                     alt="S.IT.CO Logo"
                     src="/sitco-logo_round.png"
-                    sx={{mt: 2, mb: 2}}
+                    sx={{mt: 1, mb: 2}}
                 />
                 <Container maxWidth="sm">
-                    <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                        Welcome to S.IT.CO <br></br>
-                    </Typography>
-                    <Typography variant="h6" align="center" color="text.secondary" paragraph>
-                        your place for collecting all of your favorite items
+                    <Typography
+                        variant="h5"
+                        align="center"
+                        color="#91BFBC"
+                        paragraph
+                    >
+                        Welcome to S.IT.CO
+                        <br></br>
+                        <h6>your place for collecting all of your favorite items</h6>
                     </Typography>
                 </Container>
                 <Box
@@ -95,11 +107,10 @@ export default function SitCoAuth(props: AuthProps) {
                                 <TextField
                                     required
                                     fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
                                     id="password"
-                                    margin="normal"
+                                    label="Password"
+                                    name="password"
+                                    type="password"
                                     onChange={handleChange}
                                 />
                             </Grid>
@@ -108,19 +119,20 @@ export default function SitCoAuth(props: AuthProps) {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{mt: 3, mb: 2, bgcolor: '#91BFBC'}}
+                            sx={{mt: 3, mb: 3, bgcolor: '#91BFBC', color: "white"}}
                         >
                             {props.buttonLabel}
                         </Button>
                         <Grid container justifyContent="center">
-                            <Grid item>
+                            <Grid item
+                                  sx={{mb: 11}}>
                                 {props.children}
                             </Grid>
                         </Grid>
                     </Box>
-                    <Footer/>
                 </Box>
             </Container>
+            <Footer/>
         </ThemeProvider>
     );
 }

@@ -6,20 +6,25 @@ import "material-react-toastify/dist/ReactToastify.css";
 import {toast} from "react-toastify";
 import Button from "@mui/material/Button";
 import UploadIcon from '@mui/icons-material/Upload';
-import {defaultCategory, defaultStatus, states, categories} from "../model/Constants";
+import {categories, defaultCategory, defaultStatus, states} from "../model/Constants";
 import {
     Box,
-    createTheme,
-    CssBaseline, FormControl,
-    Grid, InputLabel, MenuItem, Select, TextField,
+    CssBaseline,
+    FormControl,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
     ThemeProvider,
     Typography
 } from "@mui/material";
 import Container from "@mui/material/Container";
 import {Save} from "@mui/icons-material";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import AppBarTop from "../components/AppBarTop";
 import Footer from "../components/Footer";
+import theme from "../styles/theme";
 
 export default function ItemPage() {
     const [isEditItem, setIsEditItem] = useState(false);
@@ -55,7 +60,7 @@ export default function ItemPage() {
                 setDescription(item.description ?? "");
                 setImageName(item.image?.name ?? "");
                 setCategory(item.category ?? defaultCategory);
-                setStatus(item.status ? item.status.toLowerCase() : defaultStatus);
+                setStatus(item.status ? item.status : defaultStatus);
             });
         })();
     }, [params.id]);
@@ -64,6 +69,7 @@ export default function ItemPage() {
         event.preventDefault();
 
         const correctedPrice = parseFloat(price.toString().replace(",", "."))
+
         const image: Image = {
             name: imageName,
         }
@@ -73,18 +79,29 @@ export default function ItemPage() {
             description: description,
             image: image,
             category: category,
-            status: status?.toUpperCase(),
+            status: status
         }
         const axiosAction = isEditItem ?
             axios.put("/api/items/" + params.id, item) :
             axios.post("/api/items/", item);
+        console.log(params.id)
         return axiosAction
+            .then(() => {
+                setIsEditItem(false);
+                setName("");
+                setPrice("");
+                setDescription("");
+                setImageName("");
+                setCategory(defaultCategory);
+                setStatus(defaultStatus);
+            })
             .then(() => toast.success("Item saved."))
             .catch((error) => toast.error("Error: " + error));
     }
 
     const submitItemAndGoHome = (event: React.FormEvent<HTMLElement>) => {
-        submitItemData(event).then(() => navigate("/"));
+        submitItemData(event)
+            .then(() => navigate("/"));
     }
 
     const submitItemAndAddNewItem = (event: React.FormEvent<HTMLElement>) => {
@@ -109,39 +126,34 @@ export default function ItemPage() {
         }
     }
 
-    const theme = createTheme();
-
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline/>
             <AppBarTop/>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline/>
-                <Box
-                    sx={{
-                        bgcolor: 'background.paper',
-                        pt: 8,
-                        pb: 6,
-                    }}
-                >
-                    <Container maxWidth="sm">
-                        <Typography
-                            component="h4"
-                            variant="h5"
-                            align="center"
-                            color="text.primary"
-                            gutterBottom
-                        >
-                            View, edit and add your items.
-                        </Typography>
-                        <Typography
-                            variant="h5"
-                            align="center"
-                            color="text.secondary"
-                            paragraph>
-                            Make art lovers happy!
-                        </Typography>
-
-                    </Container>
+            <Container
+                component="main"
+                sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}>
+                <Box>
+                    <Typography
+                        variant="h5"
+                        align="center"
+                        color="#91BFBC"
+                        gutterBottom
+                    >
+                        View, edit and add your items.
+                    </Typography>
+                    <Typography
+                        variant="h6"
+                        align="center"
+                        color="#91BFBC"
+                        paragraph>
+                        Make art lovers happy!
+                    </Typography>
 
                     <Box component="form" noValidate
                         // onSubmit={submitItem}
@@ -161,6 +173,53 @@ export default function ItemPage() {
                                     }}
                                 />
                             </Grid>
+
+{/*                            // IMAGE
+
+                            <Grid item xs={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    label="Image URL"
+                                    id="image"
+                                    name="image"
+                                    value={imageName}
+                                    onChange={(event) => {
+                                        setImageName(event.target.value)
+                                    }}
+                                />
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <Button
+                                    fullWidth
+                                    variant={"contained"}
+                                    component={"label"}
+                                    startIcon={<UploadIcon/>}
+                                    sx={{color: '#fff'}}
+                                    onClick={(event) => {
+                                        event.preventDefault();
+                                        fileInputRef.current?.click();
+                                    }}> UPLOAD IMAGE
+                                </Button>
+
+                                <input
+                                    ref={fileInputRef}
+                                    style={{display: "none"}}
+                                    type={"file"}
+                                    onChange={(e) => uploadImage(e)}
+                                    accept={"image/*"}
+                                />
+
+                            </Grid>
+                            {imageName && (
+                                <Grid item xs={12}>
+                                    <img src={imageName} alt="preview" style={{width: "100%"}}/>
+                                </Grid>
+                            )}
+
+                            // IMAGE END*/}
+
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -198,7 +257,8 @@ export default function ItemPage() {
                                         label="Category"
                                         onChange={(event) => setCategory(event.target.value)}
                                     >
-                                        {categories.map((category) => (<MenuItem value={category}>{category}</MenuItem>))}
+                                        {categories.map((category) => (
+                                            <MenuItem value={category}>{category}</MenuItem>))}
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -213,12 +273,12 @@ export default function ItemPage() {
                                         label="Status"
                                         onChange={(event) => setStatus(event.target.value)}
                                     >
-                                        {states.map((status) => (<MenuItem value={status}>{status}</MenuItem>))}
+                                        {states.map((status, index) => (<MenuItem key={index} value={status}>{status}</MenuItem>))}
                                     </Select>
                                 </FormControl>
                             </Grid>
 
-                            <Grid item xs={6}>
+                           <Grid item xs={6}>
                                 <TextField
                                     required
                                     fullWidth
@@ -234,9 +294,11 @@ export default function ItemPage() {
 
                             <Grid item xs={6}>
                                 <Button
+                                    fullWidth
                                     variant={"contained"}
                                     component={"label"}
                                     startIcon={<UploadIcon/>}
+                                    sx={{color: '#fff'}}
                                     onClick={(event) => {
                                         event.preventDefault();
                                         fileInputRef.current?.click();
@@ -251,48 +313,61 @@ export default function ItemPage() {
                                     accept={"image/*"}
                                 />
                             </Grid>
+
                             {imageName && (
                                 <Grid item xs={12}>
-                                    <img src={imageName} alt="preview" style={{width: "100%"}}/>
+                                    <img
+                                        src={imageName}
+                                        alt="preview"
+                                        style={{width: "80%"}}/>
                                 </Grid>
                             )}
                         </Grid>
+                        <Grid container
+                              justifyContent="center"
+                              spacing={1}>
+                            <Grid item xs={6}>
+                                <Button
+                                    variant="contained"
+                                    fullWidth
+                                    sx={{mt: 3, mb: 2, color: '#fff'}}
+                                    startIcon={<Save/>}
+                                    onClick={(event) => submitItemAndGoHome(event)}
+                                >
+                                    Save & back
+                                </Button>
+                            </Grid>
 
                             <Grid item xs={6}>
-                        <Button
-                            variant="contained"
-                            fullWidth
-                            sx={{mt: 3, mb: 2, bgcolor: '#91BFBC'}}
-                            startIcon={<Save/>}
-                            onClick={(event) => submitItemAndGoHome(event)}
-                        >
-                            Save & back
-                        </Button>
-                    </Grid>
-
-                                <Grid item xs={6}>
-                        <Button
-                            variant="contained"
-                            fullWidth
-                            sx={{mt: 3, mb: 2, bgcolor: '#91BFBC'}}
-                            startIcon={<Save/>}
-                            onClick={(event) => submitItemAndAddNewItem(event)}
-                        >
-                            Save & Next
-                        </Button>
-                    </Grid>
+                                <Button
+                                    variant="contained"
+                                    fullWidth
+                                    sx={{mt: 3, mb: 2, color: '#fff'}}
+                                    startIcon={<Save/>}
+                                    onClick={(event) => submitItemAndAddNewItem(event)}
+                                >
+                                    Save & Next
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Box>
-                    <Grid container justifyContent="center">
+{/*                    <Grid container justifyContent="center">
                         <Grid item>
-                            <Link to={"/"}>
+                            <Link
+                                color={"#91BFBC"}
+                                to={"/"}>
                                 {"back to start"}
                             </Link>
                         </Grid>
-                    </Grid>
+                    </Grid>*/}
                 </Box>
-                <LogoutButton/>
-                <Footer/>
+                <Grid container={true}
+                      sx={{mb: 12}}
+                >
+                    <LogoutButton/>
+                </Grid>
             </Container>
+            <Footer/>
 
         </ThemeProvider>
 

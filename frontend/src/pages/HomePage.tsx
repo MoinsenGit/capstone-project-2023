@@ -12,7 +12,7 @@ import {
     CardActions,
     CardContent,
     CardMedia,
-    createTheme,
+    Container,
     CssBaseline,
     Dialog,
     DialogActions,
@@ -21,10 +21,15 @@ import {
     Fab,
     FormControl,
     Grid,
+    IconButton,
     InputLabel,
     MenuItem,
     Select,
     SelectChangeEvent,
+    Table,
+    TableCell,
+    TableContainer,
+    TableRow,
     TextField,
     ThemeProvider,
     Typography
@@ -35,6 +40,8 @@ import AppBarTop from "../components/AppBarTop";
 import Footer from "../components/Footer";
 import {Item} from "../model/Item";
 import {categories, states} from "../model/Constants";
+import theme from "../styles/theme";
+
 
 export default function HomePage() {
     const [items, setItems] = useState([] as Item[]);
@@ -76,25 +83,6 @@ export default function HomePage() {
         event.preventDefault();
         navigate("/itemdetails/" + id);
     }
-
-    /*
-        const changeStatus = (event: SelectChangeEvent, itemId: (string | undefined)) => {
-            event.preventDefault();
-            const newStatus = event.target.value;
-            axios.patch("/api/items/" + itemId + "/status/" + newStatus)
-                .then(() => {
-                    setItems(items
-                        .map(item => {
-                            if (item.id === itemId) {
-                                item.status = newStatus;
-                            }
-                            return item;
-                        }));
-                    toast.success("Item status changed successfully to " + newStatus + ".");
-                })
-                .catch((error) => toast.error(error.message));
-        };
-    */
 
     const changeFilterStatus = (event: SelectChangeEvent) => {
         event.preventDefault();
@@ -141,175 +129,252 @@ export default function HomePage() {
         minimumFractionDigits: 2,
     });
 
-    const theme = createTheme();
-
     return (
         <ThemeProvider theme={theme}>
             <AppBarTop/>
             <CssBaseline/>
-            <Grid container={true}
-                  spacing={0}
-                  direction="row"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="flex-start"
-                  bgcolor={"#f6f6ee"}>
+            <Container
+                component="main"
+                maxWidth={false}
+                sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}>
 
-                <Grid item md={4}
-                      justifyContent="center"
-                      alignItems="center"
-                        maxWidth="45%"
-                        component="img"
-                        alt="S.IT.CO Logo"
-                        src="/sitco-logo_round.png"
-                     sx={{mt: 2, mb: 2}}>
-                </Grid>
-                <Grid item md={8} justifyContent="center">
+                <Box
+                    maxWidth="40%"
+                    component="img"
+                    alignItems={"center, baseline"}
+                    alt="S.IT.CO Logo"
+                    src="/sitco-logo_round.png"
+                    sx={{mt: 1, mb: 1}}
+                />
                     <Typography
                         variant="h5"
                         align="center"
-                        color="#91BFBC"
+                        color="primary"
                         paragraph
                     >
-                        Welcome to S.IT.CO! <br/>
-                        Your place for collecting all of your favorite items.
+                        Welcome to S.IT.CO
+                        <br></br>
+                        <h6>your place for collecting all of your favorite items</h6>
                     </Typography>
-                </Grid>
-            </Grid>
 
-            <Grid container={true}
-                  spacing={4}
-                  justifyContent="center"
-                  bgcolor={"#f6f6ee"}>
-                <Grid item spacing={3} md={8}>
-                    <Typography
-                        variant="body1"
-                        color="text.secondary"
-                    >
-                        Filter for what you want to see.
-                    </Typography>
-                    <TextField
-                        fullWidth={true}
-                        id="filter"
-                        name="filter"
-                        value={filterName}
-                        label="Type to filter for title."
-                        onChange={(event) => changeFilterName(event)}
-                        margin={"normal"}
-                    />
-                    <FormControl fullWidth>
-                        <InputLabel id="status-select-label">Select category to filter</InputLabel>
-                        <Select
-                            fullWidth={true}
-                            labelId="filter-category-select"
-                            value={filterCategory}
-                            label="Select category to filter"
-                            onChange={(event) => changeFilterCategory(event)}
-                        >
-                            {categories.map((category) => (<MenuItem value={category}>{category}</MenuItem>))}
-                            <MenuItem value="SHOW ALL">no filter</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <FormControl fullWidth>
-                        <InputLabel id="status-select-label">Select status to filter</InputLabel>
-                        <Select
-                            fullWidth={true}
-                            labelId="filter-status-select"
-                            value={filterStatus}
-                            label="Select status to filter"
-                            onChange={(event) => changeFilterStatus(event)}
-                        >
-                            {states.map((status) => (<MenuItem value={status}>{status}</MenuItem>))}
-                            <MenuItem value="SHOW ALL">no filter</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <Button onClick={() => clearFilter()}>Clear filter</Button>
-                </Grid>
-            </Grid>
 
-            <Grid container={true} spacing={0} bgcolor={"#f6f6ee"}>
-                {items.map((item) => (
-                    <Grid item key={item.id} bgcolor={"#f6f6ee"} mb={4} xs >
-                            <Card
-                                sx={{height: '100%', maxWidth: 340, display: 'flex', flexDirection: 'column', margin: {xs: 1, sm: 2, md: 3}}}
-                            >
-                                <CardMedia
-                                    component="img"
-                                    image={item.image.name}
-                                    alt={item.name}
-                                />
-                                <CardContent sx={{flexGrow: 1}}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {item.name}
-                                    </Typography>
-                                    <Typography color="text.secondary">
-                                        {item.description}
-                                    </Typography>
-                                    <Typography color={"red"}>
-                                        Price: {convert.format(item.price)}
-                                    </Typography>
-                                    <Typography>
-                                        Category: {item.category}
-                                    </Typography>
-                                    <Typography>
-                                        Status: {item.status}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button
-                                        onClick={() => openDeleteConfirmationDialog(item.id)}
-                                        variant="outlined"
-                                        size="small"
-                                        startIcon={<DeleteIcon/>}
-                                    ></Button>
-
-                                    <Button
-                                        fullWidth={true}
-                                        onClick={(event) => viewItem(event, item.id)}
-                                        variant="outlined"
-                                        size="small"
-                                    >
-                                        View / Edit Details
-                                    </Button>
-                                </CardActions>
-                            </Card>
-
-                    </Grid>
-                ))}
                 <Grid container={true}
-                      bgcolor={"#f6f6ee"}>
-                    <LogoutButton/>
+                      spacing={1}
+                      direction="column"
+                      alignItems="stretch"
+                      justifyContent="center"
+                >
+                    <Grid item md={12}>
+                        <Typography
+                            variant="body1"
+                            color="text.secondary"
+                        >
+                            Filter for what you want to see.
+                        </Typography>
+                    </Grid>
+                    <Grid item md={12}>
+                        <TextField
+                            fullWidth={true}
+                            id="filter"
+                            name="filter"
+                            value={filterName}
+                            label="Type to filter for title"
+                            onChange={(event) => changeFilterName(event)}
+                        />
+                    </Grid>
+                    <Grid item md={12}>
+                        <FormControl fullWidth>
+                            <InputLabel id="status-select-label">Select category to filter</InputLabel>
+                            <Select
+                                fullWidth={true}
+                                labelId="filter-category-select"
+                                value={filterCategory}
+                                label="Select category to filter"
+                                onChange={(event) => changeFilterCategory(event)}
+                            >
+                                {categories.map((category) => (<MenuItem value={category}>{category}</MenuItem>))}
+                                <MenuItem value="SHOW ALL">no filter</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                    <Grid item md={12}>
+                        <FormControl fullWidth>
+                            <InputLabel id="status-select-label">Select status to filter</InputLabel>
+                            <Select
+                                fullWidth={true}
+                                labelId="filter-status-select"
+                                value={filterStatus}
+                                label="Select status to filter"
+                                onChange={(event) => changeFilterStatus(event)}
+                            >
+                                {states.map((status) => (<MenuItem value={status}>{status}</MenuItem>))}
+                                <MenuItem value="SHOW ALL">no filter</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                    <Grid container={true}
+                          spacing={0}
+                          md={12}
+                          sx={{flexDirection: "row-reverse"}}>
+                        <Button
+                            sx={{m: 2}}
+                            onClick={() => clearFilter()}>Clear filter
+                        </Button>
+                    </Grid>
                 </Grid>
-                <Box sx={{'& > :not(style)': {m: 1}}}>
-                    <Fab aria-label="add"
-                         style={{position: 'fixed', bottom: 30, right: 20}}
-                         href={"/itemdetails"}
-                         sx={{bgcolor: '#91BFBC', color: "white"}}>
-                        <AddIcon/>
-                    </Fab>
-                </Box>
-            </Grid>
 
-            <Dialog
-                open={openDeleteConfirmation}
-                onClose={cancelDelete}
-                aria-labelledby="delete confirmation dialog"
-                aria-describedby="delete confirmation: are you sure?"
-            >
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        Please confirm, that this Item should be deleted.
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={cancelDelete} autoFocus>Cancel</Button>
-                    <Button onClick={(event) => deleteItem(event)}>Delete</Button>
-                </DialogActions>
-            </Dialog>
 
+                {/*// ITEM CARD */}
+
+                <Grid container={true}
+                      spacing={0}
+                      direction="row"
+                      alignItems="stretch"
+                      justifyContent="center"
+                >
+                    {items.map((item) => (
+                            <Grid item key={item.id} mb={4} xs>
+                                <Card
+                                    sx={{
+                                        height: '100%',
+                                        maxWidth: 340,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        margin: {xs: 1, sm: 2, md: 3}
+                                    }}
+                                >
+                                    <CardMedia
+                                        component="img"
+                                        image={item.image.name}
+                                        alt={item.name}
+                                    />
+
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h6">
+                                            {item.name}
+                                        </Typography>
+                                        <Typography color="text.secondary">
+                                            {item.description}
+                                        </Typography>
+                                        <TableContainer>
+                                            <Table
+                                                aria-label="simple table"
+                                                sx={{maxWidth: 330, mt: 1}}>
+                                                <TableRow>
+                                                    <TableCell
+                                                        align="left"
+                                                        style={{color: 'darkslategrey', padding: '3px', fontSize: '16px'}}
+                                                    >Price</TableCell>
+                                                    <TableCell
+                                                        align="right"
+                                                        style={{color: 'darkslategrey', padding: '3px', fontSize: '16px'}}
+                                                    >{convert.format(item.price)}</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell
+                                                        align="left"
+                                                        style={{color: 'darkslategrey', padding: '3px', fontSize: '16px'}}
+                                                    >Category</TableCell>
+                                                    <TableCell
+                                                        align="right"
+                                                        style={{color: 'darkslategrey', padding: '3px', fontSize: '16px'}}
+                                                    >{item.category}</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell
+                                                        align="left"
+                                                        style={{color: 'darkslategrey', padding: '3px', fontSize: '16px'}}
+                                                    >Status</TableCell>
+                                                    <TableCell
+                                                        align="right"
+                                                        style={{color: 'darkslategrey', padding: '3px', fontSize: '16px'}}
+                                                    >{item.status}</TableCell>
+                                                </TableRow>
+                                            </Table>
+                                        </TableContainer>
+                                    </CardContent>
+
+                                    <CardActions>
+                                        <IconButton
+                                            color="primary"
+                                            aria-label="delete item"
+                                            onClick={() => openDeleteConfirmationDialog(item.id)}
+                                        >
+                                            <input hidden/>
+                                            <DeleteIcon/>
+                                        </IconButton>
+
+                                        <Button
+                                            fullWidth={true}
+                                            onClick={(event) => viewItem(event, item.id)}
+                                            variant="outlined"
+                                            size="small"
+                                        >
+                                            View / Edit Details
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        )
+                    )}
+
+                    {/*// Logout Button */}
+
+                    <Grid container={true}
+                    >
+                        <LogoutButton/>
+                    </Grid>
+
+                    {/*
+                    <Grid container justifyContent="center">
+                        <Grid item>
+                            <Pagination count={pageCount} page={page} onChange={handlePageChange}/>
+                        </Grid>
+                    </Grid>
+*/
+                    }
+
+                    {/*// ADD Button */}
+
+                    <Box>
+                        <Fab aria-label="add"
+                             style={{position: 'fixed', bottom: 40, right: 20}}
+                             href={"/itemdetails"}
+                             sx={{bgcolor: '#91BFBC', color: "white"}}
+                        >
+                            <AddIcon/>
+                        </Fab>
+                    </Box>
+                </Grid>
+
+                {/*// DELETE CONFIRMATION DIALOG */}
+                <Dialog
+                    open={openDeleteConfirmation}
+                    onClose={cancelDelete}
+                    aria-labelledby="delete confirmation dialog"
+                    aria-describedby="delete confirmation: are you sure?"
+                >
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Please confirm, that this item should be deleted.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={cancelDelete} autoFocus>Cancel</Button>
+                        <Button onClick={(event) => deleteItem(event)}>Delete</Button>
+                    </DialogActions>
+                </Dialog>
+
+            </Container>
 
             <Footer/>
 
         </ThemeProvider>
-    );
+    )
+        ;
 }

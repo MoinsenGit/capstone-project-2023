@@ -10,6 +10,7 @@ import ItemPage from "./pages/ItemPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import {ToastContainer} from "react-toastify";
 import {CssBaseline} from "@mui/material";
+import CsvImportPage from "./pages/CsvImportPage";
 
 export default function Root() {
     const [searchParams] = useSearchParams();
@@ -33,6 +34,11 @@ export default function Root() {
                     <Route path="/" element={
                         <Auth>
                             <HomePage/>
+                        </Auth>
+                    }/>
+                    <Route path="/csvImport" element={
+                        <Auth>
+                            <CsvImportPage/>
                         </Auth>
                     }/>
                     <Route path="/itemDetails" element={
