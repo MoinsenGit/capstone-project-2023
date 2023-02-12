@@ -25,6 +25,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import AppBarTop from "../components/AppBarTop";
 import Footer from "../components/Footer";
 import theme from "../styles/theme";
+import {v4 as uuidv4} from "uuid";
 
 export default function ItemPage() {
     const [isEditItem, setIsEditItem] = useState(false);
@@ -258,7 +259,7 @@ export default function ItemPage() {
                                         onChange={(event) => setCategory(event.target.value)}
                                     >
                                         {categories.map((category) => (
-                                            <MenuItem value={category}>{category}</MenuItem>))}
+                                            <MenuItem key={uuidv4()} value={category}>{category}</MenuItem>))}
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -273,7 +274,7 @@ export default function ItemPage() {
                                         label="Status"
                                         onChange={(event) => setStatus(event.target.value)}
                                     >
-                                        {states.map((status, index) => (<MenuItem key={index} value={status}>{status}</MenuItem>))}
+                                        {states.map((status) => (<MenuItem key={uuidv4()} value={status}>{status}</MenuItem>))}
                                     </Select>
                                 </FormControl>
                             </Grid>

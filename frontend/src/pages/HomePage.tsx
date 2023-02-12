@@ -41,6 +41,7 @@ import Footer from "../components/Footer";
 import {Item} from "../model/Item";
 import {categories, states} from "../model/Constants";
 import theme from "../styles/theme";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function HomePage() {
@@ -197,7 +198,7 @@ export default function HomePage() {
                                 label="Select category to filter"
                                 onChange={(event) => changeFilterCategory(event)}
                             >
-                                {categories.map((category) => (<MenuItem value={category}>{category}</MenuItem>))}
+                                {categories.map((category) => (<MenuItem key={uuidv4()} value={category}>{category}</MenuItem>))}
                                 <MenuItem value="SHOW ALL">no filter</MenuItem>
                             </Select>
                         </FormControl>
@@ -212,7 +213,7 @@ export default function HomePage() {
                                 label="Select status to filter"
                                 onChange={(event) => changeFilterStatus(event)}
                             >
-                                {states.map((status) => (<MenuItem value={status}>{status}</MenuItem>))}
+                                {states.map((status) => (<MenuItem key={uuidv4()} value={status}>{status}</MenuItem>))}
                                 <MenuItem value="SHOW ALL">no filter</MenuItem>
                             </Select>
                         </FormControl>
