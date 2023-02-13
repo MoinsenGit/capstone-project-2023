@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="fix: codesmell: introduce const in FileService">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/FileUploadButton.tsx" afterDir="false" />
+    <list default="true" id="8b73c5d9-fdee-43a4-8c48-53461edac82f" name="Changes" comment="feature: &#10;- styling HomePage.tsx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/controller/AppUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/controller/AppUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/repository/ItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/service/ItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/de/neuefische/backend/controller/FileControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/de/neuefische/backend/controller/FileControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/de/neuefische/backend/controller/ItemControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/de/neuefische/backend/controller/ItemControllerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ConfirmDelete.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/neuefische/backend/model/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AppBarTop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AppBarTop.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LogoutButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SitCoAuth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SitCoAuth.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ItemPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/SignUpPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,17 +31,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="020223" />
+        <entry key="$PROJECT_DIR$" value="030223" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,34 +77,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_directory_selection": "/Users/homefolder/Desktop/capstone/capstone-project-2023/backend/src/main/java/de/neuefische/backend",
-    "last_opened_file_path": "/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/src/pages",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "b43fdd98b1fd705ae4c3a10cf25aad8a",
-    "ts.external.directory.path": "/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/backend/src/main/java/de/neuefische/backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/src/pages&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;b43fdd98b1fd705ae4c3a10cf25aad8a&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/homefolder/Desktop/capstone/capstone-project-2023/frontend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="de.neuefische.backend.model" />
@@ -109,6 +117,8 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/styles" />
+      <recent name="$PROJECT_DIR$/frontend/src/model" />
       <recent name="$PROJECT_DIR$/frontend/public" />
       <recent name="$PROJECT_DIR$/frontend/src/components" />
     </key>
@@ -121,39 +131,19 @@
       <recent name="de.neuefische.backend.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ItemControllerTests">
-    <configuration name="FileControllerTestTest.upload_whenEmptyFile_thenReturn_BAD_REQUEST" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.neuefische.backend.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
-      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.FileControllerTestTest" />
-      <option name="METHOD_NAME" value="upload_whenEmptyFile_thenReturn_BAD_REQUEST" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FileControllerTest.uploadFile_whenUserLoggedIn_shouldReturnFileData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.BackendApplication">
+    <configuration name="CsvControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage" sample_coverage="false">
-        <pattern>
-          <option name="PATTERN" value="de.neuefische.backend.controller.*" />
-          <option name="ENABLED" value="false" />
-        </pattern>
         <pattern>
           <option name="PATTERN" value="de.neuefische.backend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
-      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.FileControllerTest" />
-      <option name="METHOD_NAME" value="uploadFile_whenUserLoggedIn_shouldReturnFileData" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.CsvControllerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -173,7 +163,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemControllerTests.createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemControllerTests.filterItem_whenLoggedIn_shouldReturnFilteredItems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
@@ -183,13 +173,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
       <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.ItemControllerTests" />
-      <option name="METHOD_NAME" value="createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem" />
+      <option name="METHOD_NAME" value="filterItem_whenLoggedIn_shouldReturnFilteredItems" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemControllerTests.getAll_whenLoggedInAsUser_shouldReturnItems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemControllerTests.updateStatus_whenLoggedInAsUser_doesNotUpdateItemOfOtherUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
@@ -199,7 +189,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="de.neuefische.backend.controller" />
       <option name="MAIN_CLASS_NAME" value="de.neuefische.backend.controller.ItemControllerTests" />
-      <option name="METHOD_NAME" value="getAll_whenLoggedInAsUser_shouldReturnItems" />
+      <option name="METHOD_NAME" value="updateStatus_whenLoggedInAsUser_doesNotUpdateItemOfOtherUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -215,21 +205,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="JUnit.CsvControllerTest" />
       <item itemvalue="JUnit.ItemControllerTests" />
-      <item itemvalue="JUnit.ItemControllerTests.createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem" />
-      <item itemvalue="JUnit.ItemControllerTests.getAll_whenLoggedInAsUser_shouldReturnItems" />
-      <item itemvalue="JUnit.FileControllerTest.uploadFile_whenUserLoggedIn_shouldReturnFileData" />
-      <item itemvalue="JUnit.FileControllerTestTest.upload_whenEmptyFile_thenReturn_BAD_REQUEST" />
+      <item itemvalue="JUnit.ItemControllerTests.filterItem_whenLoggedIn_shouldReturnFilteredItems" />
+      <item itemvalue="JUnit.ItemControllerTests.updateStatus_whenLoggedInAsUser_doesNotUpdateItemOfOtherUser" />
+      <item itemvalue="npm.start" />
       <item itemvalue="Spring Boot.BackendApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="JUnit.CsvControllerTest" />
         <item itemvalue="JUnit.ItemControllerTests" />
-        <item itemvalue="JUnit.ItemControllerTests.getAll_whenLoggedInAsUser_shouldReturnItems" />
-        <item itemvalue="JUnit.ItemControllerTests.createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem" />
-        <item itemvalue="JUnit.FileControllerTestTest.upload_whenEmptyFile_thenReturn_BAD_REQUEST" />
-        <item itemvalue="JUnit.FileControllerTest.uploadFile_whenUserLoggedIn_shouldReturnFileData" />
+        <item itemvalue="JUnit.ItemControllerTests.updateStatus_whenLoggedInAsUser_doesNotUpdateItemOfOtherUser" />
+        <item itemvalue="JUnit.ItemControllerTests.filterItem_whenLoggedIn_shouldReturnFilteredItems" />
       </list>
     </recent_temporary>
   </component>
@@ -265,7 +265,17 @@
       <workItem from="1675266500892" duration="6694000" />
       <workItem from="1675275775281" duration="259000" />
       <workItem from="1675277320056" duration="14297000" />
-      <workItem from="1675324850831" duration="35783000" />
+      <workItem from="1675324850831" duration="82203000" />
+      <workItem from="1675755601109" duration="24845000" />
+      <workItem from="1675838098331" duration="28500000" />
+      <workItem from="1675926561770" duration="41629000" />
+      <workItem from="1676051538882" duration="3430000" />
+      <workItem from="1676115128444" duration="253000" />
+      <workItem from="1676115384929" duration="24061000" />
+      <workItem from="1676216864841" duration="3617000" />
+      <workItem from="1676221471183" duration="238000" />
+      <workItem from="1676221710907" duration="158000" />
+      <workItem from="1676221925594" duration="2183000" />
     </task>
     <task id="LOCAL-00001" summary="fix: Maven, delete doubletten">
       <created>1674548434649</created>
@@ -449,7 +459,49 @@
       <option name="project" value="LOCAL" />
       <updated>1675367144836</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="feature: &#10;- user sees only his items &#10;&#10;- ItemControllerTests update">
+      <created>1675373202953</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1675373202953</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Feature: - item filter in backend &#10;- filter tests in ItemControllerTests">
+      <created>1675546689392</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1675546689393</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Feature:&#10;- marker &quot;available/reserved/sold&quot;&#10;- design changes (not final :D)">
+      <created>1675701583324</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1675701583324</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix: sonar issue &quot;The return value of &quot;map&quot; must be used.&quot; &gt; isPresent">
+      <created>1675702698255</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1675702698255</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feature: &#10;- category filter&#10;- styling changes - still very much work in progress&#10;fix: &#10;- price with 2 digits after comma">
+      <created>1675891351162</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1675891351162</updated>
+    </task>
+    <task id="LOCAL-00032" summary="feature: &#10;- styling HomePage.tsx">
+      <created>1675973017613</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1675973017614</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,17 +513,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
               <option name="TEXT_FILTER_SETTINGS">
                 <TextFilterSettings>
                   <option name="REGEX" value="true" />
@@ -499,12 +540,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: Maven, delete doubletten" />
-    <MESSAGE value="feature: sonar functionality" />
-    <MESSAGE value="fix fly.toml" />
-    <MESSAGE value="fix: new Dockerfile" />
-    <MESSAGE value="fix: new Dockerfile, fly.toml, .dockerignore" />
-    <MESSAGE value="fix: new fly.toml" />
     <MESSAGE value="feature: sign up and login" />
     <MESSAGE value="feature: item backend&#10;fix: comment in root deleted" />
     <MESSAGE value="feature: controller tests &#10;added: jacoco, sonar excludes config" />
@@ -524,7 +559,13 @@
     <MESSAGE value="feature: &#10;- file (image) upload &#10;- app bar component&#10;- toast delete" />
     <MESSAGE value="- FileControllerTests &#10;-" />
     <MESSAGE value="fix: codesmell: introduce const in FileService" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: codesmell: introduce const in FileService" />
+    <MESSAGE value="feature: &#10;- user sees only his items &#10;&#10;- ItemControllerTests update" />
+    <MESSAGE value="Feature: - item filter in backend &#10;- filter tests in ItemControllerTests" />
+    <MESSAGE value="Feature:&#10;- marker &quot;available/reserved/sold&quot;&#10;- design changes (not final :D)" />
+    <MESSAGE value="fix: sonar issue &quot;The return value of &quot;map&quot; must be used.&quot; &gt; isPresent" />
+    <MESSAGE value="feature: &#10;- category filter&#10;- styling changes - still very much work in progress&#10;fix: &#10;- price with 2 digits after comma" />
+    <MESSAGE value="feature: &#10;- styling HomePage.tsx" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: &#10;- styling HomePage.tsx" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/capstone_project_2023$ItemControllerTests.ic" NAME="ItemControllerTests Coverage Results" MODIFIED="1674759444525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
@@ -533,6 +574,9 @@
     </SUITE>
     <SUITE FILE_PATH="coverage/capstone_project_2023$AppUserControllerTests.ic" NAME="AppUserControllerTests Coverage Results" MODIFIED="1674759714494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>de.neuefische.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/capstone_project_2023$CsvControllerTest.ic" NAME="CsvControllerTest Coverage Results" MODIFIED="1675972567652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>de.neuefische.backend.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/capstone_project_2023$FileControllerTest.ic" NAME="FileControllerTest Coverage Results" MODIFIED="1675355630027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>de.neuefische.backend.*</FILTER>

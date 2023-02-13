@@ -2,7 +2,6 @@ import {Route, Routes, useSearchParams} from "react-router-dom";
 import Auth from "./components/Auth";
 import React, {useMemo} from "react";
 import NoAuth from "./components/NoAuth";
-import Container from '@mui/material/Container';
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -10,6 +9,8 @@ import SignUpPage from "./pages/SignUpPage";
 import ItemPage from "./pages/ItemPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import {ToastContainer} from "react-toastify";
+import {CssBaseline} from "@mui/material";
+import CsvImportPage from "./pages/CsvImportPage";
 
 export default function Root() {
     const [searchParams] = useSearchParams();
@@ -17,8 +18,8 @@ export default function Root() {
         () => searchParams.get("redirect") || "/", [searchParams]);
 
     return (
-            <Container maxWidth="sm">
-
+        <>
+            <CssBaseline/>
                 <Routes>
                     <Route path="/signup" element={
                         <NoAuth redirect={redirect}>
@@ -33,6 +34,11 @@ export default function Root() {
                     <Route path="/" element={
                         <Auth>
                             <HomePage/>
+                        </Auth>
+                    }/>
+                    <Route path="/csvImport" element={
+                        <Auth>
+                            <CsvImportPage/>
                         </Auth>
                     }/>
                     <Route path="/itemDetails" element={
@@ -51,9 +57,7 @@ export default function Root() {
                 </Routes>
 
                 <ToastContainer/>
-
-            </Container>
-
+        </>
     )
 
 }

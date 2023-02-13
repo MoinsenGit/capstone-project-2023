@@ -6,6 +6,7 @@ import de.neuefische.backend.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -80,6 +81,9 @@ public class ItemService {
                 .withMatcher("status", exact());
         exampleItem.setCreatedBy(getCurrentUserId());
         Example<Item> example = Example.of(exampleItem, matcherObject);
-        return itemRepository.findAll(example);
+        // always sort by newest items first
+        // as the Mongo ID contains the creation timestamp it is sufficient to sort by ID
+        Sort sort = Sort.by("id").descending();
+        return itemRepository.findAll(example, sort);
     }
 }

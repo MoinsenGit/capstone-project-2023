@@ -5,6 +5,8 @@ import axios from "axios";
 import SitCoAuth from "../components/SitCoAuth";
 import {Credentials} from "../model/Credentials";
 import {toast} from "react-toastify";
+import theme from "../styles/theme";
+import {ThemeProvider} from "@mui/material";
 
 export default function SignUpPage() {
 
@@ -16,7 +18,7 @@ export default function SignUpPage() {
         try {
             await axios.post("/api/users", credentials);
             toast.success("Login successfully created. You will be redirected to the login page automatically.");
-            await new Promise(f => setTimeout(f, 4000));
+            await new Promise(f => setTimeout(f, 1500));
             navigate("/login" + location.search);
         } catch (error) {
             setErrors([
@@ -27,10 +29,18 @@ export default function SignUpPage() {
     }, [navigate, location]);
 
     return (
-        <SitCoAuth buttonLabel="Sign up" handleSubmit={handleSubmit}>
-            <Link to={"/login" + location.search}>
-                {"Already have an account? Log in here!"}
-            </Link>
-        </SitCoAuth>
+        <ThemeProvider theme={theme}>
+            <SitCoAuth
+                buttonLabel="Sign up"
+                handleSubmit={handleSubmit}>
+                <Link
+                    style={{textDecoration: "none", color: "#91BFBC"}}
+                    to={"/login" + location.search}>
+                    {"Already have an account? Log in "}
+                    <span style={{textDecoration: "underline"}}>here</span>!
+                </Link>
+            </SitCoAuth>
+        </ThemeProvider>
     );
+
 }
