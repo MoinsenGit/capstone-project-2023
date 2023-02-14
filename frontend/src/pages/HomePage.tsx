@@ -41,7 +41,7 @@ import Footer from "../components/Footer";
 import {Item} from "../model/Item";
 import {categories, states} from "../model/Constants";
 import theme from "../styles/theme";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 
 export default function HomePage() {
@@ -143,29 +143,47 @@ export default function HomePage() {
                     flexDirection: 'column',
                     alignItems: 'center',
                 }}>
-
-                <Box
-                    maxWidth="40%"
-                    component="img"
-                    alignItems={"center, baseline"}
-                    alt="S.IT.CO Logo"
-                    src="/sitco-logo_round.png"
-                    sx={{mt: 1, mb: 1}}
-                />
-                    <Typography
-                        variant="h5"
-                        align="center"
-                        color="primary"
-                        paragraph
-                    >
-                        Welcome to S.IT.CO
-                        <br></br>
-                        <h6>your place for collecting all of your favorite items</h6>
-                    </Typography>
-
-
                 <Grid container={true}
                       spacing={1}
+                      direction="row"
+                      alignItems="stretch"
+                      justifyContent="center"
+                >
+                    <Grid item xs={12} md={4}
+                        // direction="column"
+                        // alignItems="stretch"
+                          justifyContent="center"
+                    >
+                        <Box
+                            maxWidth="40%"
+                            component="img"
+                            // alignItems={"center, baseline"}
+                            alt="S.IT.CO Logo"
+                            src="/sitco-logo_round.png"
+                            sx={{mt: 1, mb: 1}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} md={8}
+                          direction="row"
+                          alignItems="baseline"
+                          justifyContent="center"
+                    >
+                        <Typography
+                            variant="h5"
+                            align="center"
+                            color="primary"
+                            paragraph
+                        >
+                            Welcome to S.IT.CO
+                            <br></br>
+                            <h6>your place for collecting all of your favorite items</h6>
+                        </Typography>
+                    </Grid>
+                </Grid>
+
+                {/*// FILTER START*/}
+
+                <Grid container={true}
                       direction="column"
                       alignItems="stretch"
                       justifyContent="center"
@@ -178,7 +196,9 @@ export default function HomePage() {
                             Filter for what you want to see.
                         </Typography>
                     </Grid>
-                    <Grid item md={12}>
+                    <Grid item md={12}
+                          sx={{mt: 1, mb: 1}}
+                    >
                         <TextField
                             fullWidth={true}
                             id="filter"
@@ -188,35 +208,48 @@ export default function HomePage() {
                             onChange={(event) => changeFilterName(event)}
                         />
                     </Grid>
-                    <Grid item md={12}>
-                        <FormControl fullWidth>
-                            <InputLabel id="status-select-label">Select category to filter</InputLabel>
-                            <Select
-                                fullWidth={true}
-                                labelId="filter-category-select"
-                                value={filterCategory}
-                                label="Select category to filter"
-                                onChange={(event) => changeFilterCategory(event)}
-                            >
-                                {categories.map((category) => (<MenuItem key={uuidv4()} value={category}>{category}</MenuItem>))}
-                                <MenuItem value="SHOW ALL">no filter</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                    <Grid item md={12}>
-                        <FormControl fullWidth>
-                            <InputLabel id="status-select-label">Select status to filter</InputLabel>
-                            <Select
-                                fullWidth={true}
-                                labelId="filter-status-select"
-                                value={filterStatus}
-                                label="Select status to filter"
-                                onChange={(event) => changeFilterStatus(event)}
-                            >
-                                {states.map((status) => (<MenuItem key={uuidv4()} value={status}>{status}</MenuItem>))}
-                                <MenuItem value="SHOW ALL">no filter</MenuItem>
-                            </Select>
-                        </FormControl>
+                    <Grid container={true}
+                          spacing={1}
+                          direction="row"
+                          alignItems="stretch"
+                          justifyContent="center">
+                        <Grid container item xs={12} md={6}>
+                            <FormControl fullWidth={true}>
+                                <InputLabel id="status-select-label">Select category to filter</InputLabel>
+                                <Select
+                                    fullWidth={true}
+                                    labelId="filter-category-select"
+                                    value={filterCategory}
+                                    label="Select category to filter"
+                                    onChange={(event) => changeFilterCategory(event)}
+                                >
+                                    {categories.map((category) => (
+                                        <MenuItem
+                                            key={uuidv4()}
+                                            value={category}
+                                        >
+                                            {category}
+                                        </MenuItem>))}
+                                    <MenuItem value="SHOW ALL">no filter</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid container item xs={12} md={6}>
+                            <FormControl fullWidth={true}>
+                                <InputLabel id="status-select-label">Select status to filter</InputLabel>
+                                <Select
+                                    fullWidth={true}
+                                    labelId="filter-status-select"
+                                    value={filterStatus}
+                                    label="Select status to filter"
+                                    onChange={(event) => changeFilterStatus(event)}
+                                >
+                                    {states.map((status) => (
+                                        <MenuItem key={uuidv4()} value={status}>{status}</MenuItem>))}
+                                    <MenuItem value="SHOW ALL">no filter</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
                     </Grid>
                     <Grid container={true}
                           spacing={0}
@@ -229,6 +262,7 @@ export default function HomePage() {
                     </Grid>
                 </Grid>
 
+                {/*// FILTER END*/}
 
                 {/*// ITEM CARD */}
 
@@ -239,22 +273,38 @@ export default function HomePage() {
                       justifyContent="center"
                 >
                     {items.map((item) => (
-                            <Grid item key={item.id} mb={4} xs>
+                            <Grid
+                                item key={item.id}
+                                mb={4}
+                                alignItems="stretch"
+                                justifyContent="center"
+                            >
                                 <Card
                                     sx={{
                                         height: '100%',
-                                        maxWidth: 340,
-                                        display: 'flex',
-                                        flexDirection: 'column',
+                                        width: 340,
                                         margin: {xs: 1, sm: 2, md: 3}
                                     }}
                                 >
+                                    <Box
+                                        display="flex"
+                                        alignItems="center"
+                                        justifyContent="center"
+                                    >
                                     <CardMedia
+                                        sx={{
+                                            maxWidth: {xs: 200, sm: 200, md: 250, lg: 350},
+                                            margin: {xs: 1, sm: 2, md: 3, lg: 4},
+                                            marginTop: {xs: 3, sm: 3, md: 3, lg: 4},
+                                            padding: {xs: 1, sm: 2, md: 3, lg: 4},
+                                            borderRadius: '12px',
+                                            boxShadow: 3,
+                                        }}
                                         component="img"
                                         image={item.image.name}
                                         alt={item.name}
                                     />
-
+                                </Box>
                                     <CardContent>
                                         <Typography gutterBottom variant="h6">
                                             {item.name}
@@ -265,7 +315,7 @@ export default function HomePage() {
                                         <TableContainer>
                                             <Table
                                                 aria-label="simple table"
-                                                sx={{maxWidth: 330, mt: 1}}>
+                                                sx={{maxWidth: 340, mt: 1, mb: 0}}>
                                                 <TableRow>
                                                     <TableCell
                                                         align="left"
@@ -300,7 +350,9 @@ export default function HomePage() {
                                         </TableContainer>
                                     </CardContent>
 
-                                    <CardActions>
+                                    <CardActions
+                                        style={{paddingRight: '16px', paddingLeft: '16px'}}
+                                    >
                                         <IconButton
                                             color="primary"
                                             aria-label="delete item"
@@ -312,6 +364,7 @@ export default function HomePage() {
 
                                         <Button
                                             fullWidth={true}
+
                                             onClick={(event) => viewItem(event, item.id)}
                                             variant="outlined"
                                             size="small"
