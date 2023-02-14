@@ -175,7 +175,7 @@ export default function ItemPage() {
                                 />
                             </Grid>
 
-{/*                            // IMAGE
+                            {/*// IMAGE*/}
 
                             <Grid item xs={6}>
                                 <TextField
@@ -219,7 +219,7 @@ export default function ItemPage() {
                                 </Grid>
                             )}
 
-                            // IMAGE END*/}
+                            {/*// IMAGE END*/}
 
                             <Grid item xs={12}>
                                 <TextField
@@ -274,55 +274,13 @@ export default function ItemPage() {
                                         label="Status"
                                         onChange={(event) => setStatus(event.target.value)}
                                     >
-                                        {states.map((status) => (<MenuItem key={uuidv4()} value={status}>{status}</MenuItem>))}
+                                        {states.map((status) => (
+                                            <MenuItem key={uuidv4()} value={status}>{status}</MenuItem>))}
                                     </Select>
                                 </FormControl>
+
                             </Grid>
 
-                           <Grid item xs={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    label="Image URL"
-                                    id="image"
-                                    name="image"
-                                    value={imageName}
-                                    onChange={(event) => {
-                                        setImageName(event.target.value)
-                                    }}
-                                />
-                            </Grid>
-
-                            <Grid item xs={6}>
-                                <Button
-                                    fullWidth
-                                    variant={"contained"}
-                                    component={"label"}
-                                    startIcon={<UploadIcon/>}
-                                    sx={{color: '#fff'}}
-                                    onClick={(event) => {
-                                        event.preventDefault();
-                                        fileInputRef.current?.click();
-                                    }}> UPLOAD IMAGE
-                                </Button>
-
-                                <input
-                                    ref={fileInputRef}
-                                    style={{display: "none"}}
-                                    type={"file"}
-                                    onChange={(e) => uploadImage(e)}
-                                    accept={"image/*"}
-                                />
-                            </Grid>
-
-                            {imageName && (
-                                <Grid item xs={12}>
-                                    <img
-                                        src={imageName}
-                                        alt="preview"
-                                        style={{width: "80%"}}/>
-                                </Grid>
-                            )}
                         </Grid>
                         <Grid container
                               justifyContent="center"
@@ -352,15 +310,7 @@ export default function ItemPage() {
                             </Grid>
                         </Grid>
                     </Box>
-{/*                    <Grid container justifyContent="center">
-                        <Grid item>
-                            <Link
-                                color={"#91BFBC"}
-                                to={"/"}>
-                                {"back to start"}
-                            </Link>
-                        </Grid>
-                    </Grid>*/}
+
                 </Box>
                 <Grid container={true}
                       sx={{mb: 12}}
