@@ -41,12 +41,6 @@ export default function ItemPage() {
 
     const params = useParams();
 
-    const convert = Intl.NumberFormat('de-DE', {
-        style: 'currency',
-        currency: 'EUR',
-        minimumFractionDigits: 2,
-    });
-
     useEffect(() => {
         (async () => {
             const id = params.id;
@@ -57,7 +51,7 @@ export default function ItemPage() {
             itemDataPromise.then((item: Item) => {
                 setIsEditItem(idIsSet);
                 setName(item.name ?? "");
-                setPrice(item.price ? convert.format(item.price) : "");
+                setPrice(item.price ? item.price.toFixed(2).replace(".", ",") : "");
                 setDescription(item.description ?? "");
                 setImageName(item.image?.name ?? "");
                 setCategory(item.category ?? defaultCategory);
