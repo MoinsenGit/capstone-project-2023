@@ -21,7 +21,7 @@ import {
 } from "@mui/material";
 import Container from "@mui/material/Container";
 import {Save} from "@mui/icons-material";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import AppBarTop from "../components/AppBarTop";
 import Footer from "../components/Footer";
 import theme from "../styles/theme";
@@ -79,7 +79,6 @@ export default function ItemPage() {
         const axiosAction = isEditItem ?
             axios.put("/api/items/" + params.id, item) :
             axios.post("/api/items/", item);
-        console.log(params.id)
         return axiosAction
             .then(() => {
                 setIsEditItem(false);
@@ -115,7 +114,7 @@ export default function ItemPage() {
             axios.post("/api/files", formData)
                 .then((response) => {
                     setImageName(response.data.imageUrl);
-                    toast.success("Image saved and set as Image URL. Please save item to persist changes.");
+                    toast.success("Image saved and set as Image URL. Please save item to save changes.");
                 })
                 .catch((error) => toast.error(error.message));
         }
@@ -150,6 +149,9 @@ export default function ItemPage() {
                         Make art lovers happy!
                     </Typography>
 
+                    {/*
+                    //
+                    */}
                     <Box component="form" noValidate
                         // onSubmit={submitItem}
                          sx={{mt: 3}}>
@@ -302,12 +304,18 @@ export default function ItemPage() {
                                     Save & Next
                                 </Button>
                             </Grid>
+                            <Link
+                                style={{textDecoration: "none", color: "#91BFBC"}}
+                                to={"/"}
+                            >
+                                {"Back to home page without saving"}
+                            </Link>
                         </Grid>
                     </Box>
 
                 </Box>
                 <Grid container={true}
-                      sx={{mb: 12}}
+                      sx={{mb: 2}}
                 >
                     <LogoutButton/>
                 </Grid>

@@ -149,25 +149,14 @@ export default function HomePage() {
                       alignItems="stretch"
                       justifyContent="center"
                 >
-                    <Grid item xs={12} md={4}
-                        // direction="column"
-                        // alignItems="stretch"
-                          justifyContent="center"
-                    >
                         <Box
                             maxWidth="40%"
                             component="img"
-                            // alignItems={"center, baseline"}
+                            alignItems={"center, baseline"}
                             alt="S.IT.CO Logo"
                             src="/sitco-logo_round.png"
                             sx={{mt: 1, mb: 1}}
                         />
-                    </Grid>
-                    <Grid item xs={12} md={8}
-                          direction="row"
-                          alignItems="baseline"
-                          justifyContent="center"
-                    >
                         <Typography
                             variant="h5"
                             align="center"
@@ -178,7 +167,6 @@ export default function HomePage() {
                             <br></br>
                             <h6>your place for collecting all of your favorite items</h6>
                         </Typography>
-                    </Grid>
                 </Grid>
 
                 {/*// FILTER START*/}
@@ -291,20 +279,20 @@ export default function HomePage() {
                                         alignItems="center"
                                         justifyContent="center"
                                     >
-                                    <CardMedia
-                                        sx={{
-                                            maxWidth: {xs: 200, sm: 200, md: 250, lg: 350},
-                                            margin: {xs: 1, sm: 2, md: 3, lg: 4},
-                                            marginTop: {xs: 3, sm: 3, md: 3, lg: 4},
-                                            padding: {xs: 1, sm: 2, md: 3, lg: 4},
-                                            borderRadius: '12px',
-                                            boxShadow: 3,
-                                        }}
-                                        component="img"
-                                        image={item.image.name}
-                                        alt={item.name}
-                                    />
-                                </Box>
+                                        <CardMedia
+                                            sx={{
+                                                maxWidth: {xs: 170, sm: 200, md: 250, lg: 350},
+                                                margin: {xs: 1, sm: 2, md: 3, lg: 4},
+                                                marginTop: {xs: 3, sm: 3, md: 3, lg: 4},
+                                                padding: {xs: 1, sm: 2, md: 3, lg: 4},
+                                                borderRadius: '12px',
+                                                boxShadow: 3,
+                                            }}
+                                            component="img"
+                                            image={item.image.name}
+                                            alt={item.name}
+                                        />
+                                    </Box>
                                     <CardContent>
                                         <Typography gutterBottom variant="h6">
                                             {item.name}

@@ -8,11 +8,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Optional;
 
 @Configuration
@@ -24,7 +29,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
-                .httpBasic().and()
+                .httpBasic().authenticationEntryPoint(new PreventBasicAuthPopupEntryPoint()).and()
                 .authorizeHttpRequests()
                 .antMatchers(
                         HttpMethod.POST,
@@ -62,5 +67,15 @@ public class SecurityConfig {
                     .roles("BASIC")
                     .build();
         };
+    }
+
+    // Prevents the basic auth popup in browser, but still allows logins via the login page.
+    // See: https://stackoverflow.com/questions/31424196#answer-50023070
+    private static class PreventBasicAuthPopupEntryPoint implements AuthenticationEntryPoint {
+        @Override
+        public void commence(HttpServletRequest request, HttpServletResponse response,
+                             AuthenticationException authException) throws IOException {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+        }
     }
 }
