@@ -2,6 +2,7 @@ package de.neuefische.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.neuefische.backend.model.AppUser;
+import de.neuefische.backend.model.Image;
 import de.neuefische.backend.model.Item;
 import de.neuefische.backend.model.Status;
 import de.neuefische.backend.repository.AppUserRepository;
@@ -50,7 +51,7 @@ class ItemControllerTests {
     void createNewItem_whenLoggedInAsUser_shouldReturnCreatedItem() throws Exception {
         appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
 
-        Item testItem = new Item("1", "test", 1.0, "test", null, "test", "2", Status.RESERVED);
+        Item testItem = new Item("1", "test", 1.0, "test", Image.builder().url("http://image.url").build(), "test", "2", Status.RESERVED);
         final String json = new ObjectMapper()
                 .writerWithDefaultPrettyPrinter()
                 .writeValueAsString(testItem);
@@ -67,6 +68,34 @@ class ItemControllerTests {
                 .isPresent()
                 .get()
                 .isEqualTo(testItem);
+    }
+
+    @Test
+    @WithMockUser(username = "testuser")
+    void createNewItem_whenLoggedInAsUser_shouldReturnValidationErrorsOnInvalidItem() throws Exception {
+        appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
+
+        String expectedErrors = """
+                {
+                    "exception": "MethodArgumentNotValidException",
+                    "message": "Validation failed",
+                    "errors": [
+                        {\"field\": "image", \"message\": "Please provide an Image URL or upload an image!"},
+                        {\"field\": "price", \"message\": "Please provide a Price!"},
+                        {\"field\": "name", \"message\": "Please provide a Title!"},
+                        {\"field\": "description", \"message\": "Please provide a Description!"}
+                    ]
+                }
+                """;
+        mockMvc.perform(post("/api/items")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"id\":\"invalid\"}"))
+                .andExpectAll(
+                        status().isBadRequest(),
+                        content().json(expectedErrors)
+                );
+
+        assertThat(itemRepository.findById("invalid")).isNotPresent();
     }
 
     @Test
@@ -105,7 +134,7 @@ class ItemControllerTests {
                 "name":"test",
                 "price":1.0,
                 "description":"test",
-                "image":null,
+                "image":{"url":"image.com"},
                 "category":"test",
                 "createdBy":"2"
                 }
@@ -115,7 +144,7 @@ class ItemControllerTests {
                 "name":"test",
                 "price":1.0,
                 "description":"test",
-                "image":null,
+                "image":{"id":null,"name":null,"url":"image.com","type":null},
                 "category":"test",
                 "createdBy":"2",
                 "status":"AVAILABLE"
@@ -154,7 +183,7 @@ class ItemControllerTests {
                 "name":"test",
                 "price":1.0,
                 "description":"test",
-                "image":null,
+                "image":{"url":"image.co.uk"},
                 "category":"test",
                 "createdBy":"2"
                 }
@@ -172,7 +201,7 @@ class ItemControllerTests {
                 "name":"test",
                 "price":1.0,
                 "description":"test",
-                "image":null,
+                "image":{"id":null,"name":null,"url":"image.co.uk","type":null},
                 "category":"test",
                 "createdBy":"2",
                 "status":"RESERVED"
@@ -188,6 +217,34 @@ class ItemControllerTests {
                 );
         assertTrue(itemRepository.findById("3").isPresent());
 
+    }
+
+    @Test
+    @WithMockUser(username = "testuser")
+    void updateItem_whenLoggedInAsUser_shouldReturnValidationErrorsOnInvalidItem() throws Exception {
+        appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
+        itemRepository.save(Item.builder().id("3").name("test").price(1.0).image(Image.builder().url("image.co.uk").build()).build());
+
+        String expectedErrors = """
+                {
+                    "exception": "MethodArgumentNotValidException",
+                    "message": "Validation failed",
+                    "errors": [
+                        {\"field\": "price", \"message\": "Price must be greater than 0!"},
+                        {\"field\": "name", \"message\": "Please provide a Title!"},
+                        {\"field\": "description", \"message\": "Please provide a Description!"},
+                        {\"field\": "image.url", \"message\": "Please provide an Image URL or upload an image!"}
+                    ]
+                }
+                """;
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/items/3")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"price\":-7,\"image\":{\"url\":\"\"}}"))
+                .andExpectAll(
+                        status().isBadRequest(),
+                        content().json(expectedErrors)
+                );
+        assertThat(itemRepository.findById("3").get().getImage().getUrl()).isEqualTo("image.co.uk");
     }
 
     @Test
@@ -209,7 +266,7 @@ class ItemControllerTests {
                 "name":"test",
                 "price":1.0,
                 "description":"test",
-                "image":null,
+                "image":{"url": "image.de"},
                 "category":"test",
                 "createdBy":"2"
                 }
@@ -266,62 +323,62 @@ class ItemControllerTests {
         appUserRepository.save(new AppUser("2", "testuser", "testpassword"));
 
         itemRepository.saveAll(List.of(
-                Item.builder().id("1").category("Test Category 1").createdBy("2").name("Test name 1").build(),
-                Item.builder().id("2").category("Test Category 1").createdBy("2").name("Test name 2").status(Status.RESERVED).build(),
-                Item.builder().id("3").category("Test Category 1").createdBy("2").name("Cool item").status(Status.AVAILABLE).build(),
-                Item.builder().id("4").category("Test Category 2").createdBy("2").name("Test name 3").status(Status.SOLD).build(),
-                Item.builder().id("5").category("Test Category 2").createdBy("2").name("Test name 4").build(),
-                Item.builder().id("6").category("Test Category 2").createdBy("1").name("Test name 5").status(Status.RESERVED).build()
-           )
+                        Item.builder().id("1").category("Test Category 1").createdBy("2").name("Test name 1").build(),
+                        Item.builder().id("2").category("Test Category 1").createdBy("2").name("Test name 2").status(Status.RESERVED).build(),
+                        Item.builder().id("3").category("Test Category 1").createdBy("2").name("Cool item").status(Status.AVAILABLE).build(),
+                        Item.builder().id("4").category("Test Category 2").createdBy("2").name("Test name 3").status(Status.SOLD).build(),
+                        Item.builder().id("5").category("Test Category 2").createdBy("2").name("Test name 4").build(),
+                        Item.builder().id("6").category("Test Category 2").createdBy("1").name("Test name 5").status(Status.RESERVED).build()
+                )
         );
 
-       String response1 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
+        String response1 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"category\":\"Test Category 2\"}"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-       assertThat(extractItemIds(response1)).containsExactlyInAnyOrder("4", "5");
+        assertThat(extractItemIds(response1)).containsExactlyInAnyOrder("4", "5");
 
-       String response2 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
+        String response2 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"category\":\"Test Category 1\"}"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-       assertThat(extractItemIds(response2)).containsExactlyInAnyOrder("1", "2", "3");
+        assertThat(extractItemIds(response2)).containsExactlyInAnyOrder("1", "2", "3");
 
-       String response3 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
+        String response3 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"status\":\"AVAILABLE\"}"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-       assertThat(extractItemIds(response3)).containsExactlyInAnyOrder( "3");
+        assertThat(extractItemIds(response3)).containsExactlyInAnyOrder("3");
 
-       String response4 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
+        String response4 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"status\":\"RESERVED\"}"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-       assertThat(extractItemIds(response4)).containsExactlyInAnyOrder( "2");
+        assertThat(extractItemIds(response4)).containsExactlyInAnyOrder("2");
 
-       String response5 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
+        String response5 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"test\"}"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-       assertThat(extractItemIds(response5)).containsExactlyInAnyOrder( "1","2", "4", "5");
+        assertThat(extractItemIds(response5)).containsExactlyInAnyOrder("1", "2", "4", "5");
 
-       String response6 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
+        String response6 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"test\",\"category\":\"Test Category 1\"}"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-       assertThat(extractItemIds(response6)).containsExactlyInAnyOrder( "1","2");
+        assertThat(extractItemIds(response6)).containsExactlyInAnyOrder("1", "2");
 
-       String response7 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
+        String response7 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"test\",\"category\":\"Test Category 1\",\"status\":\"AVAILABLE\"}"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-       assertThat(extractItemIds(response7)).isEmpty();
+        assertThat(extractItemIds(response7)).isEmpty();
 
-       String response8 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
+        String response8 = mockMvc.perform(MockMvcRequestBuilders.post("/api/items/filter")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"createdBy\":\"1\"}")) // createdBy will be overridden by the logged-in user
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-       assertThat(extractItemIds(response8)).containsExactlyInAnyOrder( "1","2","3","4","5");
+        assertThat(extractItemIds(response8)).containsExactlyInAnyOrder("1", "2", "3", "4", "5");
     }
 
     @Test

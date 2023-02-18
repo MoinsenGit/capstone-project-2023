@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ItemPage from "./pages/ItemPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import CsvImportPage from "./pages/CsvImportPage";
 import {ToastContainer} from "react-toastify";
 import {CssBaseline} from "@mui/material";
 
@@ -45,12 +46,19 @@ export default function Root() {
                             <ItemPage/>
                         </Auth>
                     }/>
+                    <Route path="/csvImport" element={
+                        <Auth>
+                            <CsvImportPage/>
+                        </Auth>
+                    }/>
                     <Route path={"*"} element={
                         <NotFoundPage/>
                     }/>
                 </Routes>
 
-                <ToastContainer/>
+                <ToastContainer
+                    autoClose={1500}
+                />
         </>
     )
 

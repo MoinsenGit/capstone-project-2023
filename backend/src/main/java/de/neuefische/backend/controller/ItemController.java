@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/items")
@@ -15,7 +18,7 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping
-    public Item create(@RequestBody Item item) {
+    public Item create(@Valid @RequestBody Item item) {
         return itemService.create(item);
     }
 
@@ -35,7 +38,7 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
-    public Item update(@PathVariable String id, @RequestBody Item item) {
+    public Item update(@PathVariable String id, @Valid @RequestBody Item item) {
         item.setId(id);
         return itemService.update(item);
     }
