@@ -30,7 +30,7 @@ export default function CsvImportPage() {
 
     const csvInputRef = React.useRef<HTMLInputElement>(null);
     const [items, setItems] = useState([] as Item[]);
-    const [errors, setErrors] = useState([] as String[]);
+    const [errors, setErrors] = useState([] as string[]);
 
     const uploadCsv = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -49,36 +49,36 @@ export default function CsvImportPage() {
 
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline/>
             <AppBarTop/>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline/>
-                <Box
-                    sx={{
-                        pt: 8,
-                        pb: 6,
-                    }}
-                >
-                    <Container maxWidth="sm">
+            <Container
+                component="main"
+                sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}>
+                <Box>
                         <Typography
-                            component="h4"
                             variant="h5"
                             align="center"
-                            color="text.primary"
+                            color="#91BFBC"
                             gutterBottom
                         >
                             Import your items the easy way.
                         </Typography>
                         <Typography
-                            variant="h5"
+                            variant="h6"
                             align="center"
-                            color="text.secondary"
+                            color="#91BFBC"
                             paragraph>
                             Lots and lots of new stuff!
                         </Typography>
 
-                    </Container>
-
-                    <Box component="form" noValidate
+                    <Box
+                        component="form"
+                        noValidate
                          sx={{mt: 3, mb: 3}}>
                         <Button
                             variant={"contained"}
@@ -136,15 +136,16 @@ export default function CsvImportPage() {
                         sx={{color: '#91BFBC', mb: 1}}
                     >
                         {errors.length > 0 ?
-                            <p>The Items in the following lines could not be imported. Please correct the csv-file and import ONLY the corrected lines.: </p>
+                            <p>The Items in the following lines could not be imported. <br/>
+                                Please correct the csv-file and import ONLY the corrected lines.: </p>
                             :
                             " "}
                     </Typography>
                     <TableContainer component={Paper}>
                         <Table aria-label="error table">
                             <TableBody>
-                                {errors.map((error, index) => (
-                                    <TableRow key={`error-${index}`}>
+                                {errors.map((error) => (
+                                    <TableRow key={uuidv4()}>
                                         <TableCell colSpan={8} align="left">
                                             {error}
                                         </TableCell>
@@ -169,8 +170,8 @@ export default function CsvImportPage() {
                             </Link>
                         </Grid>
                     </Grid>
+                    <LogoutButton/>
                 </Box>
-                <LogoutButton/>
             </Container>
             <Footer/>
 

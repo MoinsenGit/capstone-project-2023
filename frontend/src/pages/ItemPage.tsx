@@ -175,7 +175,8 @@ export default function ItemPage() {
                         Make art lovers happy!
                     </Typography>
 
-                    <Box component="form" noValidate
+                    <Box
+                        component="form"
                          sx={{mt: 3}}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>

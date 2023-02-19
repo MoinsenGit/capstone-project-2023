@@ -33,25 +33,23 @@ public class CsvService {
     public CsvImportResult importCsv(final Reader reader) throws IOException  {
         List<String> errors = new ArrayList<>();
         List<Item> items = new ArrayList<>();
-        System.out.println("importCsv");
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.builder()
                 .setSkipHeaderRecord(true)
                 .setHeader(HEADERS)
                 .build().parse(reader);
-        for (CSVRecord record : records) {
+        for (CSVRecord csvRecord : records) {
             try {
-                String name = record.get(NAME);
+                String name = csvRecord.get(NAME);
                 Assert.hasText(name, "Name is required");
-                String csvPrice = record.get(PRICE);
+                String csvPrice = csvRecord.get(PRICE);
                 Double price = isBlank(csvPrice) ? null : Double.parseDouble(csvPrice);
-String description = record.get(DESCRIPTION);
+String description = csvRecord.get(DESCRIPTION);
 Assert.hasText(description, "Description is required");
-String imageUrl = record.get(IMAGE_URL);
-System.out.println("imageUrl: " + imageUrl);
+String imageUrl = csvRecord.get(IMAGE_URL);
 Assert.hasText(imageUrl, "Image URL is required");
-                String csvCategory = record.get(CATEGORY);
+                String csvCategory = csvRecord.get(CATEGORY);
                 String category = isBlank(csvCategory) ? null : csvCategory;
-                String csvStatus = record.get(STATUS);
+                String csvStatus = csvRecord.get(STATUS);
                 Status status = isBlank(csvStatus) ? null : Status.valueOf(csvStatus.toUpperCase());
                 final Item item = Item.builder()
                         .name(name)
@@ -64,7 +62,7 @@ Assert.hasText(imageUrl, "Image URL is required");
                 final Item savedItem = itemService.create(item);
                 items.add(savedItem);
             } catch (RuntimeException e) {
-                errors.add("Error in line " +record.getRecordNumber() + ", can not import item: " + e.getMessage());
+                errors.add("Error in line " +csvRecord.getRecordNumber() + ", can not import item: " + e.getMessage());
             }
         }
 return new CsvImportResult(items, errors);
