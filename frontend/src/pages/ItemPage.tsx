@@ -69,6 +69,11 @@ export default function ItemPage() {
     function submitItemData(event: React.FormEvent<HTMLElement>) {
         event.preventDefault();
 
+        setErrorName("");
+        setErrorDescription("");
+        setErrorPrice("");
+        setErrorImageUrl("");
+
         const correctedPrice = parseFloat(price.toString().replace(",", "."))
 
         const image: Image = {
@@ -99,15 +104,15 @@ export default function ItemPage() {
     }
 
     const handleError = (error: any) => {
-        if (error.response.status == 400 && error.response.data.errors) {
+        if (error.response.status === 400 && error.response.data.errors) {
             error.response.data.errors.forEach((fieldError: FieldError) => {
-                if (fieldError.field == "name") {
+                if (fieldError.field === "name") {
                     setErrorName(fieldError.message);
-                } else if (fieldError.field == "description") {
+                } else if (fieldError.field === "description") {
                     setErrorDescription(fieldError.message);
-                } else if (fieldError.field == "price") {
+                } else if (fieldError.field === "price") {
                     setErrorPrice(fieldError.message);
-                } else if (fieldError.field == "image" || fieldError.field == "image.url") {
+                } else if (fieldError.field === "image" || fieldError.field === "image.url") {
                     setErrorImageUrl(fieldError.message);
                 } else {
                     toast.error(fieldError.message);

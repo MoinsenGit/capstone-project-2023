@@ -30,7 +30,7 @@ public class CsvService {
 
     private final ItemService itemService;
 
-    public CsvImportResult importCsv(final Reader reader) throws IOException  {
+    public CsvImportResult importCsv(final Reader reader) throws IOException {
         List<String> errors = new ArrayList<>();
         List<Item> items = new ArrayList<>();
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.builder()
@@ -43,10 +43,10 @@ public class CsvService {
                 Assert.hasText(name, "Name is required");
                 String csvPrice = csvRecord.get(PRICE);
                 Double price = isBlank(csvPrice) ? null : Double.parseDouble(csvPrice);
-String description = csvRecord.get(DESCRIPTION);
-Assert.hasText(description, "Description is required");
-String imageUrl = csvRecord.get(IMAGE_URL);
-Assert.hasText(imageUrl, "Image URL is required");
+                String description = csvRecord.get(DESCRIPTION);
+                Assert.hasText(description, "Description is required");
+                String imageUrl = csvRecord.get(IMAGE_URL);
+                Assert.hasText(imageUrl, "Image URL is required");
                 String csvCategory = csvRecord.get(CATEGORY);
                 String category = isBlank(csvCategory) ? null : csvCategory;
                 String csvStatus = csvRecord.get(STATUS);
@@ -62,9 +62,9 @@ Assert.hasText(imageUrl, "Image URL is required");
                 final Item savedItem = itemService.create(item);
                 items.add(savedItem);
             } catch (RuntimeException e) {
-                errors.add("Error in line " +csvRecord.getRecordNumber() + ", can not import item: " + e.getMessage());
+                errors.add("Error in line " + csvRecord.getRecordNumber() + ", can not import item: " + e.getMessage());
             }
         }
-return new CsvImportResult(items, errors);
+        return new CsvImportResult(items, errors);
     }
 }
