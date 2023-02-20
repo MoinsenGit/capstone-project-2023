@@ -20,11 +20,11 @@ import {
 } from "@mui/material";
 import Container from "@mui/material/Container";
 import {Link} from "react-router-dom";
-import AppBarTop from "../components/AppBarTop";
 import Footer from "../components/Footer";
 import theme from "../styles/theme";
 import {v4 as uuidv4} from "uuid";
 import {Item} from "../model/Item";
+import AppBarLogout from "../components/AppBarLogout";
 
 export default function CsvImportPage() {
 
@@ -47,10 +47,20 @@ export default function CsvImportPage() {
         }
     }
 
+/*    const downloadCsvTemplate = () => {
+        const downloadUrl = '/download-template';
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = 'template.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };*/
+
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <AppBarTop/>
+            <AppBarLogout/>
             <Container
                 component="main"
                 sx={{
@@ -60,29 +70,30 @@ export default function CsvImportPage() {
                     alignItems: 'center',
                 }}>
                 <Box>
-                        <Typography
-                            variant="h5"
-                            align="center"
-                            color="#91BFBC"
-                            gutterBottom
-                        >
-                            Import your items the easy way.
-                        </Typography>
-                        <Typography
-                            variant="h6"
-                            align="center"
-                            color="#91BFBC"
-                            paragraph>
-                            Lots and lots of new stuff!
-                        </Typography>
+                    <Typography
+                        variant="h5"
+                        align="center"
+                        color="#91BFBC"
+                        gutterBottom
+                    >
+                        Import your items the easy way.
+                    </Typography>
+                    <Typography
+                        variant="h6"
+                        align="center"
+                        color="#91BFBC"
+                        paragraph>
+                        Lots and lots of new stuff!
+                    </Typography>
+
 
                     <Box
                         component="form"
                         noValidate
-                         sx={{mt: 3, mb: 3}}>
+                        sx={{mt: 3, mb: 3}}>
                         <Button
-                            variant={"contained"}
-                            component={"label"}
+                            variant="contained"
+                            component="label"
                             startIcon={<UploadIcon/>}
                             sx={{width: "100%", color: "white", bgcolor: "#91BFBC"}}
                             onClick={(event) => {
@@ -100,9 +111,15 @@ export default function CsvImportPage() {
                         />
                     </Box>
 
+{/*                    <Button
+                        variant="outlined"
+                        onClick={downloadCsvTemplate}>
+                        Download CSV Template
+                    </Button>*/}
+
                     {/*// ITEM TABLE START*/}
                     <Typography
-                        variant="h6"
+                        variant="body1"
                         sx={{color: '#91BFBC', mb: 1}}
                     >
                         {items.length > 0 ?
@@ -122,7 +139,11 @@ export default function CsvImportPage() {
                                             <Typography variant="body2">{item.price} EUR</Typography>
                                             <Typography variant="body2">{item.description}</Typography>
                                         </TableCell>
-                                        <TableCell><img src={item.image.url} alt={"image preview"} width={50}/></TableCell>
+                                        <TableCell>
+                                            <img
+                                                src={item.image.url}
+                                                alt={"preview of uploaded " + item.name}
+                                                width={50}/></TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -132,7 +153,7 @@ export default function CsvImportPage() {
 
                     {/*// ERRORS TABLE START */}
                     <Typography
-                        variant="h6"
+                        variant="body1"
                         sx={{color: '#91BFBC', mb: 1}}
                     >
                         {errors.length > 0 ?
