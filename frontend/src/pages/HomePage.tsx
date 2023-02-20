@@ -134,39 +134,35 @@ export default function HomePage() {
         <ThemeProvider theme={theme}>
             <AppBarTop/>
             <CssBaseline/>
-            <Container
-                component="main"
-                maxWidth={false}
-                sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}>
-                <Grid container={true}
-                      spacing={1}
-                      direction="row"
-                      alignItems="stretch"
-                      justifyContent="center"
+            <Container>
+                <Grid
+                    container={true}
+                    alignItems="center"
+                    justifyContent="center"
                 >
-                        <Box
-                            maxWidth="40%"
-                            component="img"
-                            alignItems={"center, baseline"}
-                            alt="S.IT.CO Logo"
-                            src="/sitco-logo_round.png"
-                            sx={{mt: 1, mb: 1}}
+                    <Grid
+                        item xs={12}
+                        sm={6}
+                        sx={{textAlign: 'center', mt: 3}}
+                    >
+                        <img src="/sitco-logo_round.png"
+                             alt="S.IT.CO Logo"
+                             style={{ maxWidth: '50%', height: 'auto'}}
                         />
+                    </Grid>
+                    <Grid item
+                          xs={12}
+                          sm={6}
+                          sx={{textAlign: 'center', mb: 5}}>
                         <Typography
-                            variant="h5"
-                            align="center"
+                            variant="h6"
                             color="primary"
-                            paragraph
                         >
                             Welcome to S.IT.CO
                             <br></br>
-                            <h6>your place for collecting all of your favorite items</h6>
+                            <h5>your place for collecting all of your favorite items</h5>
                         </Typography>
+                    </Grid>
                 </Grid>
 
                 {/*// FILTER START*/}
@@ -283,13 +279,13 @@ export default function HomePage() {
                                             sx={{
                                                 maxWidth: {xs: 170, sm: 200, md: 250, lg: 350},
                                                 margin: {xs: 1, sm: 2, md: 3, lg: 4},
-                                                marginTop: {xs: 3, sm: 3, md: 3, lg: 4},
+                                                marginTop: {xs: 3, sm: 3, md: 3, },
                                                 padding: {xs: 1, sm: 2, md: 3, lg: 4},
                                                 borderRadius: '12px',
                                                 boxShadow: 3,
                                             }}
                                             component="img"
-                                            image={item.image.name}
+                                            image={item.image.url}
                                             alt={item.name}
                                         />
                                     </Box>

@@ -1,46 +1,35 @@
-import {AppBar, Box, ThemeProvider, Typography} from "@mui/material";
-import Toolbar from "@mui/material/Toolbar";
-import React from "react";
-import {Link} from "react-router-dom";
+import {AppBar, Toolbar, IconButton, Typography, ThemeProvider} from '@mui/material';
+import {Link} from 'react-router-dom';
 import theme from "../styles/theme";
 
 export default function AppBarTop() {
-
     return (
         <ThemeProvider theme={theme}>
 
-            <AppBar
-                position="relative"
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'baseline'
-                }}
-            >
-                <Toolbar>
-                    <Link
-                        to={"/"}
+            <AppBar position="relative">
+                <Toolbar
+                    sx={{ justifyContent: 'space-between' }}
+                >
+                    <IconButton
+                        component={Link}
+                        to="/"
+                        sx={{ maxWidth: "20%" }}
                     >
-                        <Box
-                            maxWidth="20%"
-                            component="img"
-                            alignItems={"baseline"}
-                            alt="S.IT.CO Logo"
-                            src="/sitco-logo_round.png"
+                        <img src="/sitco-logo_round.png"
+                             alt="S.IT.CO Logo"
+                             style={{ maxWidth: '70px', maxHeight: '70px' }}
                         />
-                    </Link>
-
+                    </IconButton>
                     <Typography
-                        variant="h6">
-                        <Link
-                            style={{
-                                textDecoration: "none",
-                                color: "#f6f6ee"
-                            }}
-                            to={"/"}
-                        >
-                            S.IT.CO
-                        </Link>
+                        component={Link}
+                        to="/"
+                        variant="h6"
+                        style={{
+                            textDecoration: "none",
+                            color: "#f6f6ee"
+                        }}
+                    >
+                        S.IT.CO
                     </Typography>
                 </Toolbar>
             </AppBar>
