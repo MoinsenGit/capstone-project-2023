@@ -36,12 +36,12 @@ import {
 } from "@mui/material";
 
 import LogoutButton from "../components/LogoutButton";
-import AppBarTop from "../components/AppBarTop";
 import Footer from "../components/Footer";
 import {Item} from "../model/Item";
 import {categories, states} from "../model/Constants";
 import theme from "../styles/theme";
 import {v4 as uuidv4} from 'uuid';
+import AppBarLogout from "../components/AppBarLogout";
 
 
 export default function HomePage() {
@@ -132,7 +132,7 @@ export default function HomePage() {
 
     return (
         <ThemeProvider theme={theme}>
-            <AppBarTop/>
+            <AppBarLogout/>
             <CssBaseline/>
             <Container>
                 <Grid
@@ -147,7 +147,7 @@ export default function HomePage() {
                     >
                         <img src="/sitco-logo_round.png"
                              alt="S.IT.CO Logo"
-                             style={{ maxWidth: '50%', height: 'auto'}}
+                             style={{maxWidth: '50%', height: 'auto'}}
                         />
                     </Grid>
                     <Grid item
@@ -279,7 +279,7 @@ export default function HomePage() {
                                             sx={{
                                                 maxWidth: {xs: 170, sm: 200, md: 250, lg: 350},
                                                 margin: {xs: 1, sm: 2, md: 3, lg: 4},
-                                                marginTop: {xs: 3, sm: 3, md: 3, },
+                                                marginTop: {xs: 3, sm: 3, md: 3,},
                                                 padding: {xs: 1, sm: 2, md: 3, lg: 4},
                                                 borderRadius: '12px',
                                                 boxShadow: 3,
@@ -368,15 +368,6 @@ export default function HomePage() {
                         <LogoutButton/>
                     </Grid>
 
-                    {/*
-                    <Grid container justifyContent="center">
-                        <Grid item>
-                            <Pagination count={pageCount} page={page} onChange={handlePageChange}/>
-                        </Grid>
-                    </Grid>
-*/
-                    }
-
                     {/*// ADD Button */}
 
                     <Box>
@@ -413,6 +404,5 @@ export default function HomePage() {
             <Footer/>
 
         </ThemeProvider>
-    )
-        ;
+    );
 }

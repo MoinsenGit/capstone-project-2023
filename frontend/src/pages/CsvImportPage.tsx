@@ -47,16 +47,6 @@ export default function CsvImportPage() {
         }
     }
 
-/*    const downloadCsvTemplate = () => {
-        const downloadUrl = '/download-template';
-        const link = document.createElement('a');
-        link.href = downloadUrl;
-        link.download = 'template.csv';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };*/
-
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
@@ -110,12 +100,6 @@ export default function CsvImportPage() {
                             accept={"text/csv"}
                         />
                     </Box>
-
-{/*                    <Button
-                        variant="outlined"
-                        onClick={downloadCsvTemplate}>
-                        Download CSV Template
-                    </Button>*/}
 
                     {/*// ITEM TABLE START*/}
                     <Typography

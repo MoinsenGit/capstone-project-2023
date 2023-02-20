@@ -64,8 +64,7 @@ class CsvControllerTest {
 
         String response = mockMvc.perform(multipart("/api/csv").file(testFile))
                 .andExpect(status().isOk())
-                .andReturn().
-                getResponse()
+                .andReturn().getResponse()
                 .getContentAsString();
 
         Map<String, List<Object>> importResult = new ObjectMapper().readValue(response, HashMap.class);

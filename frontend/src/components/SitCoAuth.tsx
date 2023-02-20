@@ -80,7 +80,11 @@ export default function SitCoAuth(props: AuthProps) {
                     <Avatar sx={{m: 1, bgcolor: '#91BFBC'}}>
                         <LockOutlinedIcon/>
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography
+                        component="h1"
+                        variant="h5"
+                        color="#91BFBC"
+                    >
                         {props.buttonLabel}
                     </Typography>
 
@@ -88,7 +92,11 @@ export default function SitCoAuth(props: AuthProps) {
                         {errors.map((error) => <Alert key={credentials.username} severity="error">{error}</Alert>)}
                     </Box>
 
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 1}}>
+                    <Box
+                        component="form"
+                        onSubmit={handleSubmit}
+                        sx={{mt: 1}}
+                    >
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
