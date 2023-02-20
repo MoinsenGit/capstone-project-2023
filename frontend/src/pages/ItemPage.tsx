@@ -22,11 +22,11 @@ import {
 import Container from "@mui/material/Container";
 import {Save} from "@mui/icons-material";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import AppBarTop from "../components/AppBarTop";
 import Footer from "../components/Footer";
 import theme from "../styles/theme";
 import {v4 as uuidv4} from "uuid";
 import {FieldError} from "../model/FieldError";
+import AppBarLogout from "../components/AppBarLogout";
 
 export default function ItemPage() {
     const [isEditItem, setIsEditItem] = useState(false);
@@ -154,7 +154,7 @@ export default function ItemPage() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <AppBarTop/>
+            <AppBarLogout/>
             <Container
                 component="main"
                 sx={{
@@ -354,7 +354,7 @@ export default function ItemPage() {
                                     startIcon={<UploadIcon/>}
                                     href={"/csvImport"}
                                 >
-                                    Go to CVS-Upload Page
+                                    Go to csv-Upload Page
                                 </Button>
                             </Grid>
                         </Grid>
